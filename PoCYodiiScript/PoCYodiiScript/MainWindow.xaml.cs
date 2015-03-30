@@ -71,7 +71,17 @@ namespace PoCYodiiScript
 
         private void pow_Click( object sender, RoutedEventArgs e )
         {
-            //todo JS
+            var engine = new ActiveScriptEngine( "JScript" );
+
+            engine.AddCode( "function fpow(a, b) {" +
+                           "    return Math.pow(a, b); " +
+                           "}" );
+
+            engine.Start();
+
+            dynamic script = engine.GetScriptHandle();
+            int res = script.fpow( Convert.ToInt32(input1.Text), Convert.ToInt32(input2.Text) );
+            result.Text = res.ToString();
         }
     }
 }
