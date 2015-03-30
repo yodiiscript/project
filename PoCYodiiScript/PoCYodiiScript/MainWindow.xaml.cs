@@ -36,7 +36,11 @@ namespace PoCYodiiScript
 
         private void rem_Click( object sender, RoutedEventArgs e )
         {
-            //todo IronRuby
+            var n1 =  Convert.ToInt32( this.input1.Text );
+            var n2 =  Convert.ToInt32( this.input2.Text );
+            var ironRubyRuntime = IronRuby.Ruby.CreateRuntime();
+            dynamic loadIRuby = ironRubyRuntime.UseFile( "../../substract.rb" );
+            this.result.Text = loadIRuby.substract( n1, n2 ).ToString(); 
         }
 
         private void mul_Click( object sender, RoutedEventArgs e )
