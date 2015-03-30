@@ -5,7 +5,7 @@
     <Grid>
         <TextBox x:Name="input1" HorizontalAlignment="Left" Height="23" Margin="40,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="input2" HorizontalAlignment="Left" Height="23" Margin="329,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="result" HorizontalAlignment="Left" Height="23" Margin="199,272,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="result" HorizontalAlignment="Left" Height="23" Margin="199,272,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
         <Button x:Name="add" Content="+" HorizontalAlignment="Left" Margin="40,114,0,0" VerticalAlignment="Top" Width="75" Click="add_Click"/>
         <Button x:Name="rem" Content="-" HorizontalAlignment="Left" Margin="120,114,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.722,0.711" Click="rem_Click"/>
         <Button x:Name="mul" Content="*" HorizontalAlignment="Left" Margin="199,114,0,0" VerticalAlignment="Top" Width="75" Click="mul_Click"/>

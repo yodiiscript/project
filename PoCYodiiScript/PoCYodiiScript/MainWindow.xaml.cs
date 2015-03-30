@@ -3,6 +3,8 @@ using System;
 using DynamicLua;
 using IronPython;
 using System.Text;
+using ActiveXScriptLib;
+using System.Runtime.InteropServices;
 
 
 namespace PoCYodiiScript
@@ -10,6 +12,7 @@ namespace PoCYodiiScript
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -49,7 +52,17 @@ namespace PoCYodiiScript
 
         private void div_Click( object sender, RoutedEventArgs e )
         {
-            //todo VB
+            var engine = new ActiveScriptEngine( "VBScript" );
+
+            engine.AddCode( "Public Function Div(a, b) " +
+                           "   Div = a / b " +
+                           "End Function" );
+
+            engine.Start();
+
+            dynamic script = engine.GetScriptHandle();
+            double res = script.Div( Convert.ToDouble( input1.Text ), Convert.ToDouble( input2.Text ) );
+            result.Text = res.ToString();
         }
 
         private void pow_Click( object sender, RoutedEventArgs e )
