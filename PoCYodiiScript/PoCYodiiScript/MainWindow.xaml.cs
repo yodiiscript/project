@@ -15,13 +15,25 @@ namespace PoCYodiiScript
 
     public partial class MainWindow : Window
     {
+        CalculatorOutput output;
+        CalculatorInput input;
+
+        public CalculatorOutput MyOutput { get { return output; } }
+
         public MainWindow()
         {
             InitializeComponent();
+            output = new CalculatorOutput();
+            input = new CalculatorInput();
+            this.DataContext = this;
         }
 
         private void add_Click( object sender, RoutedEventArgs e )
         {
+            /*input.Value1 = input1.Text;
+            input.Value2 = input2.Text ;
+
+
             var n1 =  Convert.ToInt32(this.input1.Text);
             var n2 =  Convert.ToInt32(this.input2.Text);
             var pySrc = @"def add(a,b):
@@ -31,57 +43,58 @@ namespace PoCYodiiScript
             engine.Execute( pySrc, scope );
             var add =  scope.GetVariable( "add" );
             var sum = add( n1, n2 );
-            this.result.Text =  sum.ToString();
+            this.result.Content =  sum.ToString();*/
         }
 
         private void rem_Click( object sender, RoutedEventArgs e )
         {
-            var n1 =  Convert.ToInt32( this.input1.Text );
-            var n2 =  Convert.ToInt32( this.input2.Text );
-            var ironRubyRuntime = IronRuby.Ruby.CreateRuntime();
-            dynamic loadIRuby = ironRubyRuntime.UseFile( "../../substract.rb" );
-            this.result.Text = loadIRuby.substract( n1, n2 ).ToString(); 
+            input.Value1 = input1.Text;
+            input.Value2 = input2.Text;
+            //todo soustract 
         }
 
         private void mul_Click( object sender, RoutedEventArgs e )
         {
+            input.Value1 = input1.Text;
+            input.Value2 = input2.Text;
+
             dynamic lua = new DynamicLua.DynamicLua();
             string luaInput = System.IO.File.ReadAllText( "../../add.lua" );
             lua( luaInput );
             int n1 = Convert.ToInt32( this.input1.Text );
             int n2 = Convert.ToInt32( this.input2.Text );
             dynamic r = lua.multiply( n1, n2 );
-            this.result.Text = r.ToString();
+            this.result.Content = r.ToString();
         }
 
         private void div_Click( object sender, RoutedEventArgs e )
         {
-            var engine = new ActiveScriptEngine( "VBScript" );
+            input.Value1 = input1.Text;
+            input.Value2 = input2.Text;
 
-            engine.AddCode( "Public Function Div(a, b) " +
-                           "   Div = a / b " +
-                           "End Function" );
+            var engine = new ActiveScriptEngine( "VBScript" );
+            engine.AddObject( "input", input );
+            engine.AddObject( "output", output );
+
+            engine.AddCode( "output.SetResult(System.Convert.ToInt32(input.Value1) / System.Convert.ToInt32(input.Value2)).toString()" );
 
             engine.Start();
-
-            dynamic script = engine.GetScriptHandle();
-            double res = script.Div( Convert.ToDouble( input1.Text ), Convert.ToDouble( input2.Text ) );
-            result.Text = res.ToString();
+            engine.Dispose();
         }
 
         private void pow_Click( object sender, RoutedEventArgs e )
         {
-            var engine = new ActiveScriptEngine( "JScript" );
+            input.Value1 = input1.Text;
+            input.Value2 = input2.Text;
 
-            engine.AddCode( "function fpow(a, b) {" +
-                           "    return Math.pow(a, b); " +
-                           "}" );
+            var engine = new ActiveScriptEngine( "JScript" );
+            engine.AddObject( "input", input );
+            engine.AddObject( "output", output );
+            engine.AddCode( "output.SetResult(Math.pow(parseInt(input.Value1), parseInt(input.Value2)).toString());" );
 
             engine.Start();
-
-            dynamic script = engine.GetScriptHandle();
-            int res = script.fpow( Convert.ToInt32(input1.Text), Convert.ToInt32(input2.Text) );
-            result.Text = res.ToString();
+            engine.Dispose();
+            
         }
     }
 }
