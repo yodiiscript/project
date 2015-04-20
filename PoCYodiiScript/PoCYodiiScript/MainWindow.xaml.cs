@@ -73,11 +73,13 @@ namespace PoCYodiiScript
             input.Value2 = input2.Text;
 
             var engine = new ActiveScriptEngine( "VBScript" );
+
             engine.AddObject( "input", input );
             engine.AddObject( "output", output );
+            
 
-            engine.AddCode( "output.SetResult(System.Convert.ToInt32(input.Value1) / System.Convert.ToInt32(input.Value2)).toString()" );
-
+            engine.AddCode( "output.SetResult(CStr(CInt(input.Value1) / CInt(input.Value2)))");
+            
             engine.Start();
             engine.Dispose();
         }
