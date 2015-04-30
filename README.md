@@ -1,3 +1,3 @@
 # YodiiScript
- Sudent project based on macro creation in differents langages like JS, VB, IronPython, IronRuby and LUA.
+ Student project based on macro creation in its own language which is derivated from ECMAscript6.
  
