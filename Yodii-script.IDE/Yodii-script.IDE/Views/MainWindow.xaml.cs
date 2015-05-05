@@ -20,9 +20,19 @@ namespace Yodii_script.IDE
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<object> l = new List<object>();
         public MainWindow()
         {
             InitializeComponent();
+            LoadIDEConfig();
         }
+
+        private void LoadIDEConfig()
+        {
+            this.Background = new SolidColorBrush( Colors.LightGray );
+            this.ScriptCol.Background = new SolidColorBrush( Colors.Black );
+            this.ScriptCol.Foreground = new SolidColorBrush( Colors.White );
+        }
+
     }
 }

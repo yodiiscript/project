@@ -8,5 +8,6 @@ namespace Yodii_script.IDE.Tests
 {
     public class Class1
     {
+    
     }
 }
