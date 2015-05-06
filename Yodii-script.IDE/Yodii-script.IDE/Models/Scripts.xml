@@ -1,0 +1,8 @@
+<Scripts>
+	<Script>
+		<name>Test</name>
+		<language>CK</language>
+		<description>This is a test script</description>
+		<content>Content of the test script</content>
+	</Script>
+</Scripts>
