@@ -11,6 +11,7 @@ namespace Yodii_script.IDE.View_Models
         public String name { get; set; }
         public String language { get; set; }
         public String description { get; set; }
-        public String content { get; set; }  
+        public String content { get; set; } 
+ 
     }
 }
