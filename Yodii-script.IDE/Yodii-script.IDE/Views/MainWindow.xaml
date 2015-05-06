@@ -4,7 +4,10 @@
         xmlns:Collections="clr-namespace:System.Collections;assembly=mscorlib" x:Class="Yodii_script.IDE.MainWindow"
         Title="MainWindow" Height="720" Width="600">
     <Grid>
-        <ListBox x:Name="ScriptCol" HorizontalAlignment="Left" Margin="3,50,3,15" Width="175" BorderThickness="3" Cursor="Hand">
+        <ListBox x:Name="ScriptCol" HorizontalAlignment="Left" Margin="3,50,3,15" Width="175" 
+                 BorderThickness="3" 
+                 Cursor="Hand"
+                 DataContext="View_Models.Script._scriptList">
             <ListBox.Effect>
                 <BlurEffect KernelType="Gaussian" Radius="1" RenderingBias="Quality"/>
             </ListBox.Effect>
