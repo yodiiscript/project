@@ -11,19 +11,19 @@ namespace Yodii_script.IDE.View_Models
 {
     public class Script : INotifyPropertyChanged
     {
-        public static ScriptList _scriptList;
-        public String _name { get; set; }
-        public String _language { get; set; }
-        public String _description { get; set; }
-        public String _content { get; set; }
+        public static ScriptList _scriptList= new ScriptList();
+        string _name; 
+        string _language; 
+        string _description; 
+        string _sourceCode;
 
         public Script( string name, string language, string description, string sourceCode )
         {
             _name = name;
             _language = language;
             _description = description;
-            _content = sourceCode;
-            _scriptList = new ScriptList( _name );
+            _sourceCode = sourceCode;
+            _scriptList.AddScript( this );
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -36,17 +36,43 @@ namespace Yodii_script.IDE.View_Models
             }
 
         }
+
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+        public string Language
+        {
+            get { return _language; }
+            set { _language = value; }
+        }
+        public string Description
+        {
+            get { return _description; }
+            set { _description = value; }
+        }
+        public string SourceCode
+        {
+            get { return _sourceCode; }
+            set { _sourceCode = value; }
+        }
+        public ScriptList ScriptList
+        {
+            get { return _scriptList; }
+        }
     }
 
-    public class ScriptList : ObservableCollection<string>
+    public class ScriptList : ObservableCollection<Script>
     {
-        internal bool isToggled;
-
-        public ScriptList(string s)
+        internal static bool _isToggled;
+        internal readonly List<string> _scriptNames=new List<string>();
+        public void AddScript( Script s )
         {
             Add( s );
-            isToggled = false;
+            _scriptNames.Add( s.Name );
         }
-       
+        
+
     }
 }

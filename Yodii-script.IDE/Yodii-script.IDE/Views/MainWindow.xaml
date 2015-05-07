@@ -8,9 +8,7 @@
                  BorderThickness="3" 
                  Cursor="Hand"
                  DataContext="View_Models.Script._scriptList">
-            <ListBox.Effect>
-                <BlurEffect KernelType="Gaussian" Radius="1" RenderingBias="Quality"/>
-            </ListBox.Effect>
+            
         </ListBox>
 
     </Grid>

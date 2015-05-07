@@ -25,8 +25,8 @@ namespace Yodii_script.IDE
         {
             InitializeComponent();
             LoadIDEConfig();
-            Script x = new Script("lol","ys","script doing nothing","let x = 5;");
-            this.ScriptCol.ItemsSource = Script._scriptList;
+            
+            this.ScriptCol.ItemsSource = Script._scriptList._scriptNames;
         }
 
         private void LoadIDEConfig()
@@ -34,8 +34,7 @@ namespace Yodii_script.IDE
             this.Background = new SolidColorBrush( Colors.LightGray );
             this.ScriptCol.Background = new SolidColorBrush( Colors.Black );
             this.ScriptCol.Foreground = new SolidColorBrush( Colors.White );
-            //this.ScriptCol.DataContext = View_Models.Script._scriptList; DONE IN XAML
         }
-
+    
     }
 }
