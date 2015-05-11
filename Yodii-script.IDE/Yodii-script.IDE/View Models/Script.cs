@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using System.Runtime.CompilerServices;
 
 
 namespace Yodii_script.IDE.View_Models
 {
     public class Script : INotifyPropertyChanged
     {
-        public static ScriptList _scriptList= new ScriptList();
         string _name; 
         string _language; 
         string _description; 
@@ -23,12 +23,12 @@ namespace Yodii_script.IDE.View_Models
             _language = language;
             _description = description;
             _sourceCode = sourceCode;
-            _scriptList.AddScript( this );
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void NotifyPropertyChanged( string name )
+        protected void RaisePropertyChanged( [CallerMemberName] string name = null )
         {
             if( PropertyChanged != null )
             {
@@ -37,10 +37,23 @@ namespace Yodii_script.IDE.View_Models
 
         }
 
+        public string FullName
+        {
+            get { return String.Format( "{0} {1}", _name, _language ); }
+        }
+
         public string Name
         {
             get { return _name; }
-            set { _name = value; }
+            set 
+            { 
+                if( _name != value )
+                {
+                    _name = value;
+                    RaisePropertyChanged();
+                    RaisePropertyChanged( "FullName" );
+                }
+            }
         }
         public string Language
         {
@@ -57,22 +70,26 @@ namespace Yodii_script.IDE.View_Models
             get { return _sourceCode; }
             set { _sourceCode = value; }
         }
-        public ScriptList ScriptList
-        {
-            get { return _scriptList; }
-        }
+        
     }
 
     public class ScriptList : ObservableCollection<Script>
     {
-        internal static bool _isToggled;
-        internal readonly List<string> _scriptNames=new List<string>();
-        public void AddScript( Script s )
-        {
-            Add( s );
-            _scriptNames.Add( s.Name );
-        }
-        
+        bool _isToggled;
 
+        public bool IsToggled
+        {
+            get { return _isToggled; }
+            set
+            {
+                if( _isToggled != value )
+                {
+                    _isToggled = value;
+                    OnPropertyChanged( new PropertyChangedEventArgs( "isToggled" ) );
+                }
+            }
+        }
     }
+ 
+
 }

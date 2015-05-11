@@ -25,8 +25,7 @@ namespace Yodii_script.IDE
         {
             InitializeComponent();
             LoadIDEConfig();
-            
-            this.ScriptCol.ItemsSource = Script._scriptList._scriptNames;
+            //this.ScriptCol.ItemsSource = Script._scriptList._scriptNames;
         }
 
         private void LoadIDEConfig()

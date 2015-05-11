@@ -17,7 +17,7 @@ namespace Yodii_script.IDE.Tests
             Script sut = new Script( "myTest", "ys", "This is a test script", "let x = 5;" );
             Assert.That( sut.Name == "myTest" && sut.SourceCode =="let x = 5;");
         }
-
+/*
         [Test]
         public void static_script_list_stores_properly()
         {
@@ -25,5 +25,6 @@ namespace Yodii_script.IDE.Tests
             Script sut = new Script( "another test", "ys", "test", "let a;" );
             Assert.That( Script._scriptList.Contains( s ) && Script._scriptList.Contains( sut ) );
         }
+*/
     }
 }
