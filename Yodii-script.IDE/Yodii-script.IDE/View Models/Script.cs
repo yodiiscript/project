@@ -17,13 +17,12 @@ namespace Yodii_script.IDE.View_Models
         string _description; 
         string _sourceCode;
 
-        public Script( string name, string language, string description, string sourceCode )
+        internal Script( string name, string language, string description, string sourceCode )
         {
             _name = name;
             _language = language;
             _description = description;
             _sourceCode = sourceCode;
-
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -55,6 +54,7 @@ namespace Yodii_script.IDE.View_Models
                 }
             }
         }
+        #region Get-Set
         public string Language
         {
             get { return _language; }
@@ -70,7 +70,7 @@ namespace Yodii_script.IDE.View_Models
             get { return _sourceCode; }
             set { _sourceCode = value; }
         }
-        
+        #endregion
     }
 
     public class ScriptList : ObservableCollection<Script>

@@ -9,7 +9,7 @@ using System.Collections.ObjectModel;
 
 namespace Yodii_script.IDE.View_Models
 {
-    class ScriptContext : ObservableCollection<Script>, INotifyPropertyChanged
+    public class ScriptContext : INotifyPropertyChanged
     {
         private readonly ScriptList _scriptList = new ScriptList();
 
@@ -22,7 +22,8 @@ namespace Yodii_script.IDE.View_Models
             }
 
         }
-        // TODO should retrieve values from UI
+        
+        // TODO should retrieve values from UI instead
         public Script CreateScript( string name,string language , string desc, string sourceCode )
         {
             Script script = new Script( name, language, desc, sourceCode );
@@ -34,5 +35,6 @@ namespace Yodii_script.IDE.View_Models
         {
             get { return _scriptList; }
         }
+       
     }
 }
