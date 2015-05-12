@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace Yodii_script.IDE.View_Models
 {
-    class XMLserializer
+    public class ScriptSerializer
     {
         public void AddScript( Script script )
         {
@@ -93,7 +93,7 @@ namespace Yodii_script.IDE.View_Models
         public ScriptList LoadScriptList()
         {
             string path = "../../Models/Scripts.xml";
-            ScriptList scriptList = new ScriptList();
+            ScriptContext s = new ScriptContext();
             try
             {
                 var scripts = from c in XElement.Load( path ).Elements( "Script" )
@@ -106,7 +106,7 @@ namespace Yodii_script.IDE.View_Models
                               };
                 foreach( var script in scripts )
                 {
-                    scriptList.Add( new Script( script.name, script.language, script.description, script.description ) );
+                    s.CreateScript( script.name, script.language, script.description, script.description  );
                 }
             }
             catch( FileNotFoundException )
@@ -119,7 +119,7 @@ namespace Yodii_script.IDE.View_Models
                 doc.AppendChild( element );
                 doc.Save( path );
             }
-            return scriptList;
+            return s.ScriptList;
         }
     }
 }
