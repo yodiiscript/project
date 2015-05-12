@@ -24,11 +24,26 @@ namespace Yodii_script.IDE.View_Models
         }
         
         // TODO should retrieve values from UI instead
-        public Script CreateScript( string name,string language , string desc, string sourceCode )
+        public Script CreateScript( string name, string language , string desc, string sourceCode )
         {
-            Script script = new Script( name, language, desc, sourceCode );
-            ScriptList.Add( script );
-            return script;
+            return new Script( name, language, desc, sourceCode );
+        }
+
+        public void AddScriptToList( Script script )
+        {
+            _scriptList.Add( script );
+        }
+
+        public bool CheckIfExists( Script script )
+        {
+            for( int i = 0; i < _scriptList.Count; i += 1 )
+            {
+                if( this._scriptList[i].Name == script.Name )
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public ScriptList ScriptList

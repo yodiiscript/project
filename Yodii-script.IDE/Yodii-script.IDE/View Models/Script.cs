@@ -38,7 +38,7 @@ namespace Yodii_script.IDE.View_Models
 
         public string FullName
         {
-            get { return String.Format( "{0} {1}", _name, _language ); }
+            get { return String.Format( "{0}.{1}", _name, _language ); }
         }
 
         public string Name

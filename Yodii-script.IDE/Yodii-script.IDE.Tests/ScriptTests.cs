@@ -16,8 +16,20 @@ namespace Yodii_script.IDE.Tests
         {
             ScriptContext s = new ScriptContext();
             Script sut = s.CreateScript( "myTest", "ys", "This is a test script", "let x = 5;" );
+            s.AddScriptToList( sut );
             Assert.That( sut.Name == "myTest" && sut.SourceCode == "let x = 5;" );
             Assert.That(s.ScriptList[0] == sut);
+        }
+
+        [Test]
+        public void ScriptContext_contains_scripts()
+        {
+            ScriptContext s = new ScriptContext();
+            Script sc = s.CreateScript( "hisTest", "ys", "Another test", "let x; let y;" );
+            s.AddScriptToList( sc );
+            Script sut = s.CreateScript( "myTest", "ys", "This is a test script", "let x = 5;" );
+            s.AddScriptToList( sut );
+            Assert.That( s.ScriptList.Contains( sut ) && s.ScriptList.Contains( sc ) );
         }
 
         [Test]
@@ -25,17 +37,10 @@ namespace Yodii_script.IDE.Tests
         {
             ScriptContext s = new ScriptContext();
             Script sc = s.CreateScript( "t", "ys", "trivialscript", "let a = 2; let b = 4; let c = a+b;" );
+            s.AddScriptToList( sc );
             Script sut = s.CreateScript( "myTest", "ys", "This is a test script", "let x = 5;" );
+            s.AddScriptToList( sut );
             Assert.That( s.ScriptList[1] == sut );
-        }
-
-        [Test]
-        public void ScriptContext_contains_scripts()
-        {
-            ScriptContext s = new ScriptContext();
-            Script sc = s.CreateScript( "hisTest", "ys", "Another test", "let x; let y;" ); 
-            Script sut = s.CreateScript( "myTest", "ys", "This is a test script", "let x = 5;" );
-            Assert.That( s.ScriptList.Contains( sut ) && s.ScriptList.Contains( sc ) );
         }
 
         [Test]

@@ -22,6 +22,7 @@ namespace Yodii_script.IDE.Tests
             ScriptSerializer ser = new ScriptSerializer();
             ScriptContext s = new ScriptContext();
             Script script = s.CreateScript( "coucou", "ys", "trash script", "let x;" );
+            s.AddScriptToList( script );
             ser.AddScript( script );
             ScriptList sut = ser.LoadScriptList();
             Assert.That( sut.Count!= 0 );
