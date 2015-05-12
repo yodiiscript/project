@@ -21,12 +21,14 @@ namespace Yodii_script.IDE
     /// </summary>
     public partial class MainWindow : Window
     {
-        ScriptContext scriptCon = new ScriptContext();
+        ScriptContext _scriptCon = new ScriptContext();
+        ScriptSerializer _scriptSer = new ScriptSerializer();
+
         public MainWindow()
         {
             InitializeComponent();
             LoadIDEConfig();
-            this.ScriptCol.ItemsSource = scriptCon.ScriptList;
+            this.ScriptCol.ItemsSource = _scriptCon.ScriptList;
         }
 
         private void LoadIDEConfig()
@@ -34,19 +36,20 @@ namespace Yodii_script.IDE
             this.Background = new SolidColorBrush( Colors.LightGray );
             this.ScriptCol.Background = new SolidColorBrush( Colors.Black );
             this.ScriptCol.Foreground = new SolidColorBrush( Colors.White );
+            _scriptCon.ScriptList = _scriptSer.LoadScriptList();
         }
 
         private void button_addScript_Click( object sender, RoutedEventArgs e )
         {
-            Script script = scriptCon.CreateScript( entry_ScriptName.Text, "ys", "trash script", "let x;" );
-            bool exists = scriptCon.CheckIfExists( script );
+            Script script = _scriptCon.CreateScript( entry_ScriptName.Text, "ys", "trash script", "let x;" );
+            bool exists = _scriptCon.CheckIfExists( script );
             if( exists )
             {
                 MessageBox.Show( "Le script existe déjà" );
             }
             else
             {
-                scriptCon.AddScriptToList( script );
+                _scriptCon.AddScriptToList( script );
                 ScriptSerializer mySerializer = new ScriptSerializer();
                 mySerializer.AddScript( script );
             }
