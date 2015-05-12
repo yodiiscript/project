@@ -11,8 +11,9 @@ namespace Yodii_script.IDE.View_Models
 {
     class XMLserializer
     {
-        public void AddScript( Script script, string path )
+        public void AddScript( Script script )
         {
+            string path = "../../Models/Scripts.xml";
             try
             {
                 XDocument doc = XDocument.Load( path );
@@ -40,8 +41,9 @@ namespace Yodii_script.IDE.View_Models
             }
         }
 
-        public void RemoveScript( Script script, string path )
+        public void RemoveScript( Script script )
         {
+            string path = "../../Models/Scripts.xml";
             try
             {
                 XDocument doc = XDocument.Load( path );
@@ -60,8 +62,9 @@ namespace Yodii_script.IDE.View_Models
             }
         }
 
-        public void EditScript( string name, Script script, string path )
+        public void EditScript( string name, Script script )
         {
+            string path = "../../Models/Scripts.xml";
             try
             {
                 XDocument doc = XDocument.Load( path );
@@ -79,16 +82,17 @@ namespace Yodii_script.IDE.View_Models
             }
             catch( FileNotFoundException )
             {
-                AddScript( script, path );
+                AddScript( script );
             }
             catch( InvalidOperationException )
             {
-                AddScript( script, path );
+                AddScript( script );
             }
         }
 
-        public ScriptList LoadScriptList( string path )
+        public ScriptList LoadScriptList()
         {
+            string path = "../../Models/Scripts.xml";
             ScriptList scriptList = new ScriptList();
             try
             {
