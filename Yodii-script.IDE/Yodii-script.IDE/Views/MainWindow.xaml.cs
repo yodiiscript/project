@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ICSharpCode.AvalonEdit;
+using ICSharpCode.AvalonEdit.Highlighting.Xshd;
+using ICSharpCode.AvalonEdit.Highlighting;
 using Yodii_script.IDE.View_Models;
 
 namespace Yodii_script.IDE
@@ -50,9 +53,20 @@ namespace Yodii_script.IDE
             else
             {
                 _scriptCon.AddScriptToList( script );
-                ScriptSerializer mySerializer = new ScriptSerializer();
-                mySerializer.AddScript( script );
+                _scriptSer.AddScript( script );
             }
+        }
+
+        private void button_deleteScript_Click( object sender, RoutedEventArgs e )
+        {
+            int idx = ScriptCol.SelectedIndex;
+            _scriptSer.RemoveScript( _scriptCon.ScriptList[idx]);
+            _scriptCon.ScriptList.RemoveAt( idx );
+        }
+
+        private void button_newScript_Click( object sender, RoutedEventArgs e )
+        {
+
         }
 
 

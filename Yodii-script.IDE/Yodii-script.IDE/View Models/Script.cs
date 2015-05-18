@@ -36,6 +36,7 @@ namespace Yodii_script.IDE.View_Models
 
         }
 
+        #region Get-Set
         public string FullName
         {
             get { return String.Format( "{0}.{1}", _name, _language ); }
@@ -54,7 +55,7 @@ namespace Yodii_script.IDE.View_Models
                 }
             }
         }
-        #region Get-Set
+        
         public string Language
         {
             get { return _language; }
@@ -65,10 +66,19 @@ namespace Yodii_script.IDE.View_Models
             get { return _description; }
             set { _description = value; }
         }
+
         public string SourceCode
         {
             get { return _sourceCode; }
-            set { _sourceCode = value; }
+            set
+            {
+                if( _sourceCode != value )
+                {
+                    _name = value;
+                    RaisePropertyChanged();
+                    RaisePropertyChanged( "SourceCode" );
+                }
+            }
         }
         #endregion
     }

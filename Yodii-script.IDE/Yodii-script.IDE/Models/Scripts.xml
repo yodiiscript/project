@@ -1,10 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Scripts>
-  <Script name="helloworld">
-    <language>ys</language>
-    <description>trash script</description>
-    <sourceCode>let x;</sourceCode>
-  </Script>
   <Script name="fibonacci">
     <language>ys</language>
     <description>trash script</description>
