@@ -33,6 +33,8 @@ namespace Yodii_script.IDE
             InitializeComponent();
             LoadIDEConfig();
             this.ScriptCol.ItemsSource = _scriptCon.ScriptList;
+            LoadYodiiSyntax();
+            LoadEditorConfig();
         }
 
         private void LoadIDEConfig()
@@ -45,16 +47,18 @@ namespace Yodii_script.IDE
 
         private void button_addScript_Click( object sender, RoutedEventArgs e )
         {
-            Script script = _scriptCon.CreateScript( entry_ScriptName.Text, "ys", "trash script", ScriptEditor.Text );
-            bool exists = _scriptCon.CheckIfExists( script );
-            if( exists )
+            if( !String.IsNullOrEmpty( ScriptEditor.Text ) )
             {
-                MessageBox.Show( "Le script existe déjà" );
-            }
-            else
-            {
-                _scriptCon.AddScriptToList( script );
-                _scriptSer.AddScript( script );
+                Script script = _scriptCon.CreateScript( entry_ScriptName.Text, "ys", "trash script", ScriptEditor.Text );
+                bool exists = _scriptCon.CheckIfExists( script );
+
+                if( exists )
+                { MessageBox.Show( "A script with this name already exists" ); }
+                else
+                {
+                    _scriptCon.AddScriptToList( script );
+                    _scriptSer.AddScript( script );
+                }
             }
         }
 
@@ -76,6 +80,7 @@ namespace Yodii_script.IDE
             this.ScriptEditor.WordWrap = true;
             this.ScriptEditor.Background = new SolidColorBrush( Colors.Black );
             this.ScriptEditor.Foreground = new SolidColorBrush( Colors.White );
+            
 
         }
 
@@ -92,11 +97,17 @@ namespace Yodii_script.IDE
         private void button_newScript_Click( object sender, RoutedEventArgs e )
         {
             ScriptEditor.Visibility = Visibility.Visible;
-            LoadYodiiSyntax();
-            LoadEditorConfig();
+        }
+
+        private void button_editScript_Click( object sender, RoutedEventArgs e )
+        {
+            if( ScriptCol.SelectedItem != null )
+            {
+                ScriptEditor.Visibility = Visibility.Visible;
+                ScriptEditor.Text = _scriptCon.ScriptList[this.ScriptCol.SelectedIndex].SourceCode;
+            }
         }
 
 
-    
     }
 }

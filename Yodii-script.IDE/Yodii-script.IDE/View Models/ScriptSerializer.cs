@@ -106,7 +106,7 @@ namespace Yodii_script.IDE.View_Models
                               };
                 foreach( var script in scripts )
                 {
-                    Script scr = s.CreateScript( script.name, script.language, script.description, script.description  );
+                    Script scr = s.CreateScript( script.name, script.language, script.description, script.sourceCode );
                     s.AddScriptToList( scr );
                 }
             }
