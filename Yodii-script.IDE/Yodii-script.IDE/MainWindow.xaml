@@ -5,6 +5,6 @@
         ">
     <Grid Width="1000" Height="400" HorizontalAlignment="Left">
         <ListBox x:Name="ScriptCol" HorizontalAlignment="Left" Margin="3" Width="175" BorderThickness="2" Cursor="Hand" Height="400"/>
-
+        
     </Grid>
 </Window>
