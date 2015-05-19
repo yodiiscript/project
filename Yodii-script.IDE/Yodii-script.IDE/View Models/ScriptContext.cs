@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections.ObjectModel;
 
 namespace Yodii_script.IDE.View_Models
 {
@@ -33,27 +28,14 @@ namespace Yodii_script.IDE.View_Models
         {
             _scriptList.Add( script );
         }
-        public void RemoveByName( Script script )
+        public void RemoveByName( string name )
         {
-            for( int i = 0; i < _scriptList.Count; i += 1 )
-            {
-                if (_scriptList[i].Name == script.Name)
-                {
-                    _scriptList.Remove( _scriptList[i] );
-                }
-            }
+            _scriptList.Remove( _scriptList.First( s => s.Name == name ) );
         }
 
         public bool CheckIfExists( Script script )
         {
-            for( int i = 0; i < _scriptList.Count; i += 1 )
-            {
-                if( _scriptList[i].Name == script.Name )
-                {
-                    return true;
-                }
-            }
-            return false;
+            return _scriptList.Contains( script );
         }
 
         public ScriptList ScriptList

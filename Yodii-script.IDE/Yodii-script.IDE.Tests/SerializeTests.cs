@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using NUnit.Framework;
 using Yodii_script.IDE.View_Models;
-using System.IO;
 
 
 
@@ -38,33 +33,42 @@ namespace Yodii_script.IDE.Tests
             sut.AddScript( sc );
             Assert.That( File.Exists( path ) );
         }
-        [Test]
+        /*[Test]
         public void remove_script_from_xml() 
         {
-            string path = "../../Models/Scripts.xml";
-            File.Delete( path );
-            serialize_script_works_as_intended();
+            string path1 = "../../Models/Scripts1.xml";
+            string path2 = "../../Models/Scripts1.xml";
+
+
+            File.Delete( path1 );
+            File.Delete( path2 );
+            
             ScriptContext s = new ScriptContext();
-            Script sc = s.CreateScript( "coucou", "ys", "trash script", "let x;" );
+            Script script = s.CreateScript( "coucou", "ys", "trash script", "let x;" );
             ScriptSerializer sut = new ScriptSerializer();
-            sut.RemoveScript( sc );
+            sut.RemoveScript( script );
             string file = System.IO.File.ReadAllText( "../../Models/Scripts.xml" );
             string file2 = System.IO.File.ReadAllText( "../../Models/Scripts2.xml" );
             Assert.That(file == file2 );
-        }
+        }*/
         [Test]
         public void edit_script_to_xml()
         {
             string path = "../../Models/Scripts.xml";
             File.Delete( path );
-            ScriptContext s = new ScriptContext();
-            ScriptSerializer sut = new ScriptSerializer();
-            Script scr = s.CreateScript("lol","mdr","ffs","rofllmao");
-            Script sc = s.CreateScript( "salut", "ys", "helloscript", "print('helloworld');" );
-            sut.AddScript( scr );
-            sut.EditScript( "lol", sc );
-            ScriptList scriptlist = sut.LoadScriptList();
-            Assert.That( sc.Name == scriptlist[0].Name);
+
+            ScriptContext context = new ScriptContext();
+            ScriptSerializer serializer = new ScriptSerializer();
+
+
+            Script scriptBase = context.CreateScript( "lol", "mdr", "ffs", "rofllmao" );
+            serializer.AddScript( scriptBase );
+
+            Script scriptUpdate = context.CreateScript( "salut", "ys", "helloscript", "print('helloworld');" );
+            serializer.EditScript( "lol", scriptUpdate );
+
+            ScriptList scriptlist = serializer.LoadScriptList();
+            Assert.That( scriptUpdate.Name == scriptlist[0].Name );
         }
     }
 
