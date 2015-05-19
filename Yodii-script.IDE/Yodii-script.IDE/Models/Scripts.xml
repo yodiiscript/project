@@ -1,9 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Scripts>
-  <Script name="add">
+  <Script name="aa">
     <language>ys</language>
     <description>trash script</description>
-    <sourceCode>let a;
-let b;</sourceCode>
+    <sourceCode>aaaa</sourceCode>
   </Script>
 </Scripts>

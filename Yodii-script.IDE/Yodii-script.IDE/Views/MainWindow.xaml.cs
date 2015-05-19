@@ -75,7 +75,7 @@ namespace Yodii_script.IDE
         private void LoadYodiiSyntax()
         {
             // Load a different syntax config file
-            System.IO.StreamReader s = new System.IO.StreamReader( @"C:\dev\dotnet\avalon_test\ys.xshd" );
+            System.IO.StreamReader s = new System.IO.StreamReader( @"../../../ys.xshd" );
             {
                 using( XmlTextReader reader = new XmlTextReader( s ) )
                 {
@@ -107,6 +107,7 @@ namespace Yodii_script.IDE
         private void button_newScript_Click( object sender, RoutedEventArgs e )
         {
             ScriptEditor.Visibility = Visibility.Visible;
+            ScriptEditor.Text = string.Empty;
         }
 
         private void button_editScript_Click( object sender, RoutedEventArgs e )
