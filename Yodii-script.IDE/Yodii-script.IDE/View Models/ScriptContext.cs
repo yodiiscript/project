@@ -33,12 +33,22 @@ namespace Yodii_script.IDE.View_Models
         {
             _scriptList.Add( script );
         }
+        public void RemoveByName( Script script )
+        {
+            for( int i = 0; i < _scriptList.Count; i += 1 )
+            {
+                if (_scriptList[i].Name == script.Name)
+                {
+                    _scriptList.Remove( _scriptList[i] );
+                }
+            }
+        }
 
         public bool CheckIfExists( Script script )
         {
             for( int i = 0; i < _scriptList.Count; i += 1 )
             {
-                if( this._scriptList[i].Name == script.Name )
+                if( _scriptList[i].Name == script.Name )
                 {
                     return true;
                 }

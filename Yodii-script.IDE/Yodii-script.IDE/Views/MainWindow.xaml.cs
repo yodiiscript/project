@@ -35,6 +35,7 @@ namespace Yodii_script.IDE
             this.ScriptCol.ItemsSource = _scriptCon.ScriptList;
             LoadYodiiSyntax();
             LoadEditorConfig();
+
         }
 
         private void LoadIDEConfig()
@@ -53,7 +54,16 @@ namespace Yodii_script.IDE
                 bool exists = _scriptCon.CheckIfExists( script );
 
                 if( exists )
-                { MessageBox.Show( "A script with this name already exists" ); }
+                {
+                    MessageBoxResult overwrite = MessageBox.Show( "A script with this name exists \n want to overwrite ?", "Script found", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No );
+                    if (overwrite == MessageBoxResult.Yes ) 
+                    {
+                        _scriptCon.RemoveByName( script );
+                        _scriptCon.AddScriptToList( script );
+                        _scriptSer.RemoveScript( script );
+                        _scriptSer.AddScript( script );
+                    }
+                }
                 else
                 {
                     _scriptCon.AddScriptToList( script );
