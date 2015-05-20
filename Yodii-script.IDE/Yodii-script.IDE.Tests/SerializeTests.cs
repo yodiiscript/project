@@ -2,8 +2,6 @@
 using NUnit.Framework;
 using Yodii_script.IDE.View_Models;
 
-
-
 namespace Yodii_script.IDE.Tests
 {   
     [TestFixture]
@@ -14,21 +12,25 @@ namespace Yodii_script.IDE.Tests
         {
             string path = "../../Models/Scripts.xml";
             File.Delete( path );
-            ScriptContext s = new ScriptContext();
-            Script script = s.CreateScript( "coucou", "ys", "trash script", "let x;" );
-            s.AddScriptToList( script );
-            ScriptSerializer.AddScript( script );
-            ScriptList sut = ScriptSerializer.LoadScriptList();
-            Assert.That( sut.Count!= 0 );
+
+            ScriptContext context = new ScriptContext();
+            Script script = context.CreateAndRegisterScript( "coucou", "ys", "trash script", "let x;" );
+
+            Assert.That( context.ScriptList.Count == 1 );
+            Assert.That( context.ScriptList[0] == script );
+
+            ScriptContext context2 = new ScriptContext();
+            context2.Load();
+            Assert.That( context2.ScriptList.Count == 1 );
+            Assert.That( context2.ScriptList[0].HasSameValuesAs(script) );
         }
         [Test]
         public void serialize_script_works_as_intended()
         {
             string path = "../../Models/Scripts.xml";
             File.Delete( path );
-            ScriptContext s = new ScriptContext();
-            Script sc = s.CreateScript( "coucou", "ys", "trash script", "let x;" );
-            ScriptSerializer.AddScript( sc );
+            ScriptContext context = new ScriptContext();
+            Script script = context.CreateAndRegisterScript( "coucou", "ys", "trash script", "let x;" );
             Assert.That( File.Exists( path ) );
         }
         [Test]
@@ -43,17 +45,15 @@ namespace Yodii_script.IDE.Tests
             
             ScriptContext context = new ScriptContext();
 
-            Script script1 = context.CreateScript( "coucou", "ys", "script1", "let a;" );
+            Script script1 = context.CreateAndRegisterScript( "coucou", "ys", "script1", "let a;" );
             Script script2 = context.CreateScript( "haha", "py", "script2", "let b;" );
 
-            context.AddScriptToList( script1 );
-            ScriptSerializer.AddScript( script1 );
+            context.AddScript( script1 );
+
             File.Copy(path,path1);
 
-            context.AddScriptToList( script2 );
-            ScriptSerializer.AddScript( script2 );
-            ScriptSerializer.RemoveScript( script2 );
-            context.RemoveByName( script2.Name );
+            context.AddScript( script2 );
+            context.Remove( script2.Name );
 
             string file = System.IO.File.ReadAllText( path );
             string file2 = System.IO.File.ReadAllText( path1 );
@@ -68,13 +68,14 @@ namespace Yodii_script.IDE.Tests
             ScriptContext context = new ScriptContext();
 
             Script scriptBase = context.CreateScript( "lol", "mdr", "ffs", "rofllmao" );
-            ScriptSerializer.AddScript( scriptBase );
+            context.AddScript( scriptBase );
 
             Script scriptUpdate = context.CreateScript( "salut", "ys", "helloscript", "print('helloworld');" );
-            ScriptSerializer.EditScript( "lol", scriptUpdate );
+            context.Update( scriptBase.Name, scriptUpdate );
 
-            ScriptList scriptlist = ScriptSerializer.LoadScriptList();
-            Assert.That( scriptUpdate.Name == scriptlist[0].Name );
+            ScriptSerializer.Load( context );
+            
+            Assert.That( scriptUpdate.Name == context.ScriptList[0].Name );
         }
     }
 
