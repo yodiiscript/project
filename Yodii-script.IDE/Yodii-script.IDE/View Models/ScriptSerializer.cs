@@ -24,8 +24,8 @@ namespace Yodii_script.IDE.View_Models
         {            
             XDocument doc = FindOrCreateFile();
 
-            doc.Elements( "Scripts" ).First( e => (string)e.Attribute( "name" ) == script.Name ).Remove();
-
+            doc.Elements( "Scripts" ).Elements("Script").First( e => (string)e.Attribute( "name" ) == script.Name ).Remove();
+            
             /*foreach( XElement s in doc.Elements("Script").Nodes() )
             {
                 if( (string)s.Attribute( "name" ) == script.Name ) s.Remove();

@@ -31,24 +31,34 @@ namespace Yodii_script.IDE.Tests
             ScriptSerializer.AddScript( sc );
             Assert.That( File.Exists( path ) );
         }
-        /*[Test]
+        [Test]
         public void remove_script_from_xml() 
         {
+            string path = "../../Models/Scripts.xml";
             string path1 = "../../Models/Scripts1.xml";
-            string path2 = "../../Models/Scripts1.xml";
 
 
+            File.Delete( path );
             File.Delete( path1 );
-            File.Delete( path2 );
             
-            ScriptContext s = new ScriptContext();
-            Script script = s.CreateScript( "coucou", "ys", "trash script", "let x;" );
-            ScriptSerializer sut = new ScriptSerializer();
-            sut.RemoveScript( script );
-            string file = System.IO.File.ReadAllText( "../../Models/Scripts.xml" );
-            string file2 = System.IO.File.ReadAllText( "../../Models/Scripts2.xml" );
+            ScriptContext context = new ScriptContext();
+
+            Script script1 = context.CreateScript( "coucou", "ys", "script1", "let a;" );
+            Script script2 = context.CreateScript( "haha", "py", "script2", "let b;" );
+
+            context.AddScriptToList( script1 );
+            ScriptSerializer.AddScript( script1 );
+            File.Copy(path,path1);
+
+            context.AddScriptToList( script2 );
+            ScriptSerializer.AddScript( script2 );
+            ScriptSerializer.RemoveScript( script2 );
+            context.RemoveByName( script2.Name );
+
+            string file = System.IO.File.ReadAllText( path );
+            string file2 = System.IO.File.ReadAllText( path1 );
             Assert.That(file == file2 );
-        }*/
+        }
         [Test]
         public void edit_script_to_xml()
         {
