@@ -1,8 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Scripts>
-  <Script name="aa">
+  <Script name="aaa">
     <language>ys</language>
     <description>trash script</description>
-    <sourceCode>aaaa</sourceCode>
+    <sourceCode>a
+a
+a
+a
+
+a</sourceCode>
+  </Script>
+  <Script name="bb">
+    <language>ys</language>
+    <description>trash script</description>
+    <sourceCode>bbbb
+
+b
+b
+b
+</sourceCode>
   </Script>
 </Scripts>

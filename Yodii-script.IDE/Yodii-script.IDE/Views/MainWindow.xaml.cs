@@ -26,14 +26,22 @@ namespace Yodii_script.IDE
     public partial class MainWindow : Window
     {
         ScriptContext _scriptCon = new ScriptContext();
-        ScriptSerializer _scriptSer = new ScriptSerializer();
 
         public MainWindow()
         {
             InitializeComponent();
+            LoadIDEConfig();
+            this.ScriptCol.ItemsSource = _scriptCon.ScriptList;
             LoadYodiiSyntax();
             LoadEditorConfig();
+        }
 
+        private void LoadIDEConfig()
+        {
+            this.Background = new SolidColorBrush( Colors.LightGray );
+            this.ScriptCol.Background = new SolidColorBrush( Colors.Black );
+            this.ScriptCol.Foreground = new SolidColorBrush( Colors.White );
+            _scriptCon.Load();           
         }
 
         private void button_addScript_Click( object sender, RoutedEventArgs e )
@@ -41,23 +49,18 @@ namespace Yodii_script.IDE
             if( !String.IsNullOrEmpty( ScriptEditor.Text ) )
             {
                 Script script = _scriptCon.CreateScript( entry_ScriptName.Text, "ys", "trash script", ScriptEditor.Text );
-                bool exists = _scriptCon.CheckIfExists( script );
 
-                if( exists )
+                if(!_scriptCon.Exists(entry_ScriptName.Text))
+                {
+                    _scriptCon.AddScript( script );
+                }
+                else
                 {
                     MessageBoxResult overwrite = MessageBox.Show( "A script with this name exists \n want to overwrite ?", "Script found", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No );
                     if (overwrite == MessageBoxResult.Yes ) 
                     {
-                        _scriptCon.RemoveByName( script );
-                        _scriptCon.AddScriptToList( script );
-                        _scriptSer.RemoveScript( script );
-                        _scriptSer.AddScript( script );
+                        _scriptCon.Update( script.Name, script );
                     }
-                }
-                else
-                {
-                    _scriptCon.AddScriptToList( script );
-                    _scriptSer.AddScript( script );
                 }
             }
         }
@@ -89,8 +92,7 @@ namespace Yodii_script.IDE
             if( ScriptCol.SelectedItem != null)
             {
                 int idx = ScriptCol.SelectedIndex;
-                _scriptSer.RemoveScript( _scriptCon.ScriptList[idx] );
-                _scriptCon.ScriptList.RemoveAt( idx );
+                _scriptCon.Remove( _scriptCon.ScriptList[idx].Name );
             }
         }
 

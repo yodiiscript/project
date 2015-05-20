@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 
@@ -35,7 +31,15 @@ namespace Yodii_script.IDE.View_Models
             }
 
         }
-
+        /// <summary>
+        /// Compare the fields values of this Script with the other one
+        /// </summary>
+        /// <param name="other">the Script to compare with</param>
+        /// <returns>the result of comparison</returns>
+        public bool HasSameValuesAs( Script other )
+        {
+            return (_description == other.Description && _language == other.Language && _name == other.Name && _sourceCode == other.SourceCode);
+        }
         #region Get-Set
         public string FullName
         {
@@ -100,6 +104,4 @@ namespace Yodii_script.IDE.View_Models
             }
         }
     }
- 
-
 }
