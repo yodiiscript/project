@@ -31,19 +31,9 @@ namespace Yodii_script.IDE
         public MainWindow()
         {
             InitializeComponent();
-            LoadIDEConfig();
-            this.ScriptCol.ItemsSource = _scriptCon.ScriptList;
             LoadYodiiSyntax();
             LoadEditorConfig();
 
-        }
-
-        private void LoadIDEConfig()
-        {
-            this.Background = new SolidColorBrush( Colors.LightGray );
-            this.ScriptCol.Background = new SolidColorBrush( Colors.Black );
-            this.ScriptCol.Foreground = new SolidColorBrush( Colors.White );
-            _scriptCon.ScriptList = _scriptSer.LoadScriptList();
         }
 
         private void button_addScript_Click( object sender, RoutedEventArgs e )

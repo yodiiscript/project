@@ -62,6 +62,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="View Models\MainWindowVM.cs" />
+    <Compile Include="View Models\RelayCommand.cs" />
     <Compile Include="View Models\ScriptSerializer.cs" />
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

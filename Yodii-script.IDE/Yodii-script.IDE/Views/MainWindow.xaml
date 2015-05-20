@@ -2,16 +2,22 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Collections="clr-namespace:System.Collections;assembly=mscorlib" x:Class="Yodii_script.IDE.MainWindow"
+        xmlns:local="clr-namespace:Yodii_script.IDE.View_Models"
         Title="MainWindow" Height="720" Width="600">
-    <Grid>
-        <ListBox x:Name="ScriptCol" HorizontalAlignment="Left" Margin="3,50,3,15" Width="175" 
-                 DisplayMemberPath="FullName"/>
 
-        <Button x:Name="Button_addScript" Content="Save Script" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="button_addScript_Click" Margin="3,0,0,0"/>
+    <Window.DataContext>
+        <local:MainWindowVM/>
+    </Window.DataContext>
+
+    <Grid Background="LightGray">
+        <ListBox x:Name="ScriptCol" HorizontalAlignment="Left" Margin="3,50,3,15" Width="175" 
+                 ItemsSource="{Binding _source}" DisplayMemberPath="FullName" Background="Black" Foreground="White"/>
+
+        <Button x:Name="button_addScript" Content="Save Script" Command="{Binding AddScriptCommand}" CommandParameter="{Binding ElementName=entry_ScriptName, Path=Text}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="button_addScript_Click" Margin="3,0,0,0"/>
         <TextBox x:Name="entry_ScriptName" HorizontalAlignment="Left" Height="23" Margin="3,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="button_editScript" Content="Edit Script" HorizontalAlignment="Left" Margin="78,0,0,0" VerticalAlignment="Top" Width="75" Click="button_editScript_Click"/>
         <Button x:Name="button_newScript" Content="New Script" HorizontalAlignment="Left" Margin="153,0,0,0" VerticalAlignment="Top" Width="70" RenderTransformOrigin="0.485,-0.347" Click="button_newScript_Click"/>
-        <Button x:Name="button_deleteScript" Content="Remove script" HorizontalAlignment="Left" Margin="223,0,0,0" VerticalAlignment="Top" Width="93" Click="button_deleteScript_Click"/>
+        <Button x:Name="button_deleteScript" Content="Remove script" Command="{Binding DeleteButtonCommand}" CommandParameter="{Binding ElementName=ScriptCol, Path=SelectedItem}" HorizontalAlignment="Left" Margin="223,0,0,0" VerticalAlignment="Top" Width="93" Click="button_deleteScript_Click"/>
         <avalonEdit:TextEditor
         
     xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
