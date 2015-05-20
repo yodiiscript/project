@@ -20,4 +20,18 @@ b
 b
 </sourceCode>
   </Script>
+  <Script name="ccc">
+    <language>ys</language>
+    <description>trash script</description>
+    <sourceCode>c</sourceCode>
+  </Script>
+  <Script name="ddd">
+    <language>ys</language>
+    <description>trash script</description>
+    <sourceCode>dddd
+
+d
+d
+</sourceCode>
+  </Script>
 </Scripts>

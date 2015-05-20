@@ -14,12 +14,12 @@ namespace Yodii_script.IDE.View_Models
         private ICommand newScriptCommand;
         private ICommand editScriptCommand;
         ScriptContext _scriptCon = new ScriptContext();
-        ScriptSerializer _scriptSer = new ScriptSerializer();
-        public ScriptList _source
+        public ScriptList Source
         {
             get
             {
-                return _scriptCon.ScriptList = _scriptSer.LoadScriptList();
+                ScriptSerializer.Load(_scriptCon);
+                return _scriptCon.ScriptList;
             }
         }
     }

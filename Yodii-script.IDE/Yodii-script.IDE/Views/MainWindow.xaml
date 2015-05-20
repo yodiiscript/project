@@ -11,7 +11,7 @@
 
     <Grid Background="LightGray">
         <ListBox x:Name="ScriptCol" HorizontalAlignment="Left" Margin="3,50,3,15" Width="175" 
-                 ItemsSource="{Binding _source}" DisplayMemberPath="FullName" Background="Black" Foreground="White"/>
+                 ItemsSource="{Binding Source}" DisplayMemberPath="FullName" Background="Black" Foreground="White"/>
 
         <Button x:Name="button_addScript" Content="Save Script" Command="{Binding AddScriptCommand}" CommandParameter="{Binding ElementName=entry_ScriptName, Path=Text}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="button_addScript_Click" Margin="3,0,0,0"/>
         <TextBox x:Name="entry_ScriptName" HorizontalAlignment="Left" Height="23" Margin="3,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
