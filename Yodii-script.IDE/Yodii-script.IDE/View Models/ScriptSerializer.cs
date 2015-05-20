@@ -4,11 +4,11 @@ using System.Xml.Linq;
 
 namespace Yodii_script.IDE.View_Models
 {
-    public class ScriptSerializer
+    public static class ScriptSerializer
     {
-        string _path = "../../Models/Scripts.xml";
+        static string _path = "../../Models/Scripts.xml";
 
-        public void AddScript( Script script )
+        public static void AddScript( Script script )
         {
             XDocument doc = FindOrCreateFile();  
             XElement s = new XElement( "Script" );
@@ -20,7 +20,7 @@ namespace Yodii_script.IDE.View_Models
             doc.Save( _path );     
         }
 
-        public void RemoveScript( Script script )
+        public static void RemoveScript( Script script )
         {            
             XDocument doc = FindOrCreateFile();
 
@@ -33,7 +33,7 @@ namespace Yodii_script.IDE.View_Models
             doc.Save( _path );           
         }
 
-        public void EditScript( string name, Script script )
+        public static void EditScript( string name, Script script )
         {         
             XDocument doc = XDocument.Load( _path );
             XElement s = new XElement( "Script" );
@@ -48,7 +48,7 @@ namespace Yodii_script.IDE.View_Models
             doc.Save( _path );
         }
 
-        public ScriptList LoadScriptList()
+        public static ScriptList LoadScriptList()
         {
             ScriptContext context = new ScriptContext();
             XDocument doc = XDocument.Load( _path );
@@ -61,7 +61,7 @@ namespace Yodii_script.IDE.View_Models
 
             return context.ScriptList;
         }
-        private XDocument FindOrCreateFile()
+        private static XDocument FindOrCreateFile()
         {          
             if( File.Exists( _path ) )
             {

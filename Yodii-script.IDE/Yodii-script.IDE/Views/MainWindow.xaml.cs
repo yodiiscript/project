@@ -26,7 +26,6 @@ namespace Yodii_script.IDE
     public partial class MainWindow : Window
     {
         ScriptContext _scriptCon = new ScriptContext();
-        ScriptSerializer _scriptSer = new ScriptSerializer();
 
         public MainWindow()
         {
@@ -43,7 +42,11 @@ namespace Yodii_script.IDE
             this.Background = new SolidColorBrush( Colors.LightGray );
             this.ScriptCol.Background = new SolidColorBrush( Colors.Black );
             this.ScriptCol.Foreground = new SolidColorBrush( Colors.White );
-            _scriptCon.ScriptList = _scriptSer.LoadScriptList();
+
+            foreach( Script s in ScriptSerializer.LoadScriptList() )
+            {
+                _scriptCon.AddScriptToList( s ); 
+            }
         }
 
         private void button_addScript_Click( object sender, RoutedEventArgs e )
@@ -60,14 +63,14 @@ namespace Yodii_script.IDE
                     {
                         _scriptCon.RemoveByName( script.Name );
                         _scriptCon.AddScriptToList( script );
-                        _scriptSer.RemoveScript( script );
-                        _scriptSer.AddScript( script );
+                        ScriptSerializer.RemoveScript( script );
+                        ScriptSerializer.AddScript( script );
                     }
                 }
                 else
                 {
                     _scriptCon.AddScriptToList( script );
-                    _scriptSer.AddScript( script );
+                    ScriptSerializer.AddScript( script );
                 }
             }
         }
@@ -99,7 +102,7 @@ namespace Yodii_script.IDE
             if( ScriptCol.SelectedItem != null)
             {
                 int idx = ScriptCol.SelectedIndex;
-                _scriptSer.RemoveScript( _scriptCon.ScriptList[idx] );
+                ScriptSerializer.RemoveScript( _scriptCon.ScriptList[idx] );
                 _scriptCon.ScriptList.RemoveAt( idx );
             }
         }

@@ -96,6 +96,4 @@ namespace Yodii_script.IDE.View_Models
             }
         }
     }
- 
-
 }

@@ -14,12 +14,11 @@ namespace Yodii_script.IDE.Tests
         {
             string path = "../../Models/Scripts.xml";
             File.Delete( path );
-            ScriptSerializer ser = new ScriptSerializer();
             ScriptContext s = new ScriptContext();
             Script script = s.CreateScript( "coucou", "ys", "trash script", "let x;" );
             s.AddScriptToList( script );
-            ser.AddScript( script );
-            ScriptList sut = ser.LoadScriptList();
+            ScriptSerializer.AddScript( script );
+            ScriptList sut = ScriptSerializer.LoadScriptList();
             Assert.That( sut.Count!= 0 );
         }
         [Test]
@@ -29,8 +28,7 @@ namespace Yodii_script.IDE.Tests
             File.Delete( path );
             ScriptContext s = new ScriptContext();
             Script sc = s.CreateScript( "coucou", "ys", "trash script", "let x;" );
-            ScriptSerializer sut = new ScriptSerializer();
-            sut.AddScript( sc );
+            ScriptSerializer.AddScript( sc );
             Assert.That( File.Exists( path ) );
         }
         /*[Test]
@@ -58,16 +56,14 @@ namespace Yodii_script.IDE.Tests
             File.Delete( path );
 
             ScriptContext context = new ScriptContext();
-            ScriptSerializer serializer = new ScriptSerializer();
-
 
             Script scriptBase = context.CreateScript( "lol", "mdr", "ffs", "rofllmao" );
-            serializer.AddScript( scriptBase );
+            ScriptSerializer.AddScript( scriptBase );
 
             Script scriptUpdate = context.CreateScript( "salut", "ys", "helloscript", "print('helloworld');" );
-            serializer.EditScript( "lol", scriptUpdate );
+            ScriptSerializer.EditScript( "lol", scriptUpdate );
 
-            ScriptList scriptlist = serializer.LoadScriptList();
+            ScriptList scriptlist = ScriptSerializer.LoadScriptList();
             Assert.That( scriptUpdate.Name == scriptlist[0].Name );
         }
     }
