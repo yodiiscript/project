@@ -23,15 +23,8 @@ b
   <Script name="ccc">
     <language>ys</language>
     <description>trash script</description>
-    <sourceCode>c</sourceCode>
-  </Script>
-  <Script name="ddd">
-    <language>ys</language>
-    <description>trash script</description>
-    <sourceCode>dddd
-
-d
-d
-</sourceCode>
+    <sourceCode>c
+cc
+c</sourceCode>
   </Script>
 </Scripts>

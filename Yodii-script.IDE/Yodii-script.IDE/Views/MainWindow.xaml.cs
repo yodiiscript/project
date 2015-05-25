@@ -30,19 +30,10 @@ namespace Yodii_script.IDE
         public MainWindow()
         {
             InitializeComponent();
-            LoadIDEConfig();
-            this.ScriptCol.ItemsSource = _scriptCon.ScriptList;
             LoadYodiiSyntax();
             LoadEditorConfig();
         }
 
-        private void LoadIDEConfig()
-        {
-            this.Background = new SolidColorBrush( Colors.LightGray );
-            this.ScriptCol.Background = new SolidColorBrush( Colors.Black );
-            this.ScriptCol.Foreground = new SolidColorBrush( Colors.White );
-            _scriptCon.Load();           
-        }
 
         private void button_addScript_Click( object sender, RoutedEventArgs e )
         {
@@ -85,15 +76,6 @@ namespace Yodii_script.IDE
             this.ScriptEditor.Foreground = new SolidColorBrush( Colors.White );
             
 
-        }
-
-        private void button_deleteScript_Click( object sender, RoutedEventArgs e )
-        {
-            if( ScriptCol.SelectedItem != null)
-            {
-                int idx = ScriptCol.SelectedIndex;
-                _scriptCon.Remove( _scriptCon.ScriptList[idx].Name );
-            }
         }
 
         private void button_newScript_Click( object sender, RoutedEventArgs e )
