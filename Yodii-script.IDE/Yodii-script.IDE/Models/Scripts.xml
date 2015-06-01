@@ -6,7 +6,8 @@
     <sourceCode>let a = 5;
 let b = 2;
 let c = a+b;
-
-</sourceCode>
+    <sourceCode>c
+cc
+c</sourceCode>
   </Script>
 </Scripts>

@@ -13,11 +13,11 @@
         <ListBox x:Name="ScriptCol" HorizontalAlignment="Left" Margin="3,50,3,15" Width="175" 
                  ItemsSource="{Binding Source}" DisplayMemberPath="FullName" Background="Black" Foreground="White"/>
 
-        <Button x:Name="button_addScript" Content="Save Script" Command="{Binding AddScriptCommand}" CommandParameter="{Binding ElementName=entry_ScriptName, Path=Text}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="button_addScript_Click" Margin="3,0,0,0"/>
+        <Button x:Name="button_addScript" Content="Save Script" Command="{Binding AddScriptCommand}" CommandParameter="{Binding Text, ElementName=entry_ScriptName}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="button_addScript_Click" Margin="3,0,0,0"/>
         <TextBox x:Name="entry_ScriptName" HorizontalAlignment="Left" Height="23" Margin="3,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="button_editScript" Content="Edit Script" HorizontalAlignment="Left" Margin="78,0,0,0" VerticalAlignment="Top" Width="75" Click="button_editScript_Click"/>
-        <Button x:Name="button_newScript" Content="New Script" HorizontalAlignment="Left" Margin="153,0,0,0" VerticalAlignment="Top" Width="70" RenderTransformOrigin="0.485,-0.347" Click="button_newScript_Click"/>
-        <Button x:Name="button_deleteScript" Content="Remove script" Command="{Binding DeleteButtonCommand}" CommandParameter="{Binding ElementName=ScriptCol, Path=SelectedItem}" HorizontalAlignment="Left" Margin="223,0,0,0" VerticalAlignment="Top" Width="93" Click="button_deleteScript_Click"/>
+            <Button x:Name="button_newScript" Content="New Script" HorizontalAlignment="Left" Margin="153,0,0,0" VerticalAlignment="Top" Width="70" RenderTransformOrigin="0.485,-0.347" Click="button_newScript_Click"/>
+        <Button x:Name="button_deleteScript" Content="Remove script" Command="{Binding DeleteScriptCommand}" CommandParameter="{Binding ElementName=ScriptCol, Path=SelectedIndex}" HorizontalAlignment="Left" Margin="223,0,0,0" VerticalAlignment="Top" Width="93"/>
         <avalonEdit:TextEditor
         
     xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
