@@ -5,4 +5,9 @@
     <description>script1</description>
     <sourceCode>let a;</sourceCode>
   </Script>
+  <Script name="coucou">
+    <language>ys</language>
+    <description>script1</description>
+    <sourceCode>let a;</sourceCode>
+  </Script>
 </Scripts>
