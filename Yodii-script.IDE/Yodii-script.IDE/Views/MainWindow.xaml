@@ -25,6 +25,7 @@
     FontFamily="Consolas"
     SyntaxHighlighting="C#"
     FontSize="11pt" Margin="200,52,24,50" Visibility="Hidden"/>
+        <TextBox x:Name="entry_ScriptDesc" HorizontalAlignment="Left" Height="23" Margin="128,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
     </Grid>
     
 </Window>

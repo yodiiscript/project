@@ -1,32 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Scripts>
-  <Script name="aaa">
+  <Script name="add">
     <language>ys</language>
     <description>trash script</description>
-    <sourceCode>a
-a
-a
-a
+    <sourceCode>let a = 8;
+let b = 2;
 
-a</sourceCode>
-  </Script>
-  <Script name="bb">
-    <language>ys</language>
-    <description>trash script</description>
-    <sourceCode>bbbb
-
-b
-b
-b
-</sourceCode>
-  </Script>
-  <Script name="ddd">
-    <language>ys</language>
-    <description>trash script</description>
-    <sourceCode>dddd
-
-d
-d
-</sourceCode>
+let res = a+b;</sourceCode>
   </Script>
 </Scripts>

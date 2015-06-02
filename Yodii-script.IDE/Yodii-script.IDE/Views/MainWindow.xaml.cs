@@ -46,7 +46,7 @@ namespace Yodii_script.IDE
 
         private void button_addScript_Click( object sender, RoutedEventArgs e )
         {
-            if( !String.IsNullOrEmpty( ScriptEditor.Text ) )
+            if( !String.IsNullOrEmpty( ScriptEditor.Text ) && !String.IsNullOrEmpty( entry_ScriptDesc.Text ) && !String.IsNullOrEmpty(entry_ScriptName.Text))
             {
                 Script script = _scriptCon.CreateScript( entry_ScriptName.Text, "ys", "trash script", ScriptEditor.Text );
 
@@ -62,6 +62,10 @@ namespace Yodii_script.IDE
                         _scriptCon.Update( script.Name, script );
                     }
                 }
+            }
+            else
+            {
+                MessageBoxResult emptyField = MessageBox.Show( "At least one of the fields is empty" );
             }
         }
 
