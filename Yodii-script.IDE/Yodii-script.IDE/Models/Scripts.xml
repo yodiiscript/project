@@ -8,4 +8,11 @@ let b = 2;
 
 let res = a+b;</sourceCode>
   </Script>
+  <Script name="mul">
+    <language>ys</language>
+    <description>mul</description>
+    <sourceCode>let a;
+let b;
+let c = a*b;</sourceCode>
+  </Script>
 </Scripts>

@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using ICSharpCode.AvalonEdit;
 using ICSharpCode.AvalonEdit.Highlighting.Xshd;
 using ICSharpCode.AvalonEdit.Highlighting;
+using ICSharpCode.AvalonEdit.Editing;
 using Yodii_script.IDE.View_Models;
 using System.Xml;
 
@@ -43,13 +44,13 @@ namespace Yodii_script.IDE
             this.ScriptCol.Foreground = new SolidColorBrush( Colors.White );
             _scriptCon.Load();           
         }
+        
 
         private void button_addScript_Click( object sender, RoutedEventArgs e )
         {
             if( !String.IsNullOrEmpty( ScriptEditor.Text ) && !String.IsNullOrEmpty( entry_ScriptDesc.Text ) && !String.IsNullOrEmpty(entry_ScriptName.Text))
             {
-                Script script = _scriptCon.CreateScript( entry_ScriptName.Text, "ys", "trash script", ScriptEditor.Text );
-
+                Script script = _scriptCon.CreateScript( entry_ScriptName.Text, "ys", entry_ScriptDesc.Text, ScriptEditor.Text );
                 if(!_scriptCon.Exists(entry_ScriptName.Text))
                 {
                     _scriptCon.AddScript( script );
