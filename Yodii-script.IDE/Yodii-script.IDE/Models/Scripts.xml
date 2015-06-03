@@ -1,13 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Scripts>
-  <Script name="dd">
+  <Script name="aaa">
     <language>ys</language>
     <description>trash script</description>
-    <sourceCode>let a = 5;
-let b = 2;
-let c = a+b;
-    <sourceCode>c
-cc
-c</sourceCode>
+    <sourceCode>aa
+aa
+
+a</sourceCode>
+  </Script>
+  <Script name="bbb">
+    <language>ys</language>
+    <description>trash script</description>
+    <sourceCode>bb
+
+b</sourceCode>
   </Script>
 </Scripts>

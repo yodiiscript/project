@@ -34,28 +34,6 @@ namespace Yodii_script.IDE
             LoadEditorConfig();
         }
 
-
-        private void button_addScript_Click( object sender, RoutedEventArgs e )
-        {
-            if( !String.IsNullOrEmpty( ScriptEditor.Text ) )
-            {
-                Script script = _scriptCon.CreateScript( entry_ScriptName.Text, "ys", "trash script", ScriptEditor.Text );
-
-                if(!_scriptCon.Exists(entry_ScriptName.Text))
-                {
-                    _scriptCon.AddScript( script );
-                }
-                else
-                {
-                    MessageBoxResult overwrite = MessageBox.Show( "A script with this name exists \n want to overwrite ?", "Script found", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No );
-                    if (overwrite == MessageBoxResult.Yes ) 
-                    {
-                        _scriptCon.Update( script.Name, script );
-                    }
-                }
-            }
-        }
-
         private void LoadYodiiSyntax()
         {
             // Load a different syntax config file
