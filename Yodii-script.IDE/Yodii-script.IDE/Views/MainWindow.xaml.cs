@@ -42,7 +42,7 @@ namespace Yodii_script.IDE
             this.Background = new SolidColorBrush( Colors.LightGray );
             this.ScriptCol.Background = new SolidColorBrush( Colors.Black );
             this.ScriptCol.Foreground = new SolidColorBrush( Colors.White );
-            _scriptCon.Load();           
+            _scriptCon.Load();
         }
         
 
@@ -88,7 +88,10 @@ namespace Yodii_script.IDE
             this.ScriptEditor.WordWrap = true;
             this.ScriptEditor.Background = new SolidColorBrush( Colors.Black );
             this.ScriptEditor.Foreground = new SolidColorBrush( Colors.White );
-            
+            List<CheckBox> checkboxes = new List<CheckBox>();
+            checkboxes.Add( new CheckBox() );
+            BreakPointsMargin.ItemsSource = checkboxes;
+
 
         }
 

@@ -1,8 +1,9 @@
 ﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:Collections="clr-namespace:System.Collections;assembly=mscorlib" x:Class="Yodii_script.IDE.MainWindow"
+        xmlns:Collections="clr-namespace:System.Collections;assembly=mscorlib"
         xmlns:local="clr-namespace:Yodii_script.IDE.View_Models"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="Yodii_script.IDE.MainWindow"
         Title="MainWindow" Height="720" Width="600">
 
     <Window.DataContext>
@@ -11,21 +12,26 @@
 
     <Grid Background="LightGray">
         <ListBox x:Name="ScriptCol" HorizontalAlignment="Left" Margin="3,50,3,15" Width="175" 
-                 ItemsSource="{Binding Source}" DisplayMemberPath="FullName" Background="Black" Foreground="White"/>
+			ItemsSource="{Binding Source}" DisplayMemberPath="FullName" Background="Black" Foreground="White"/>
 
-        <Button x:Name="button_addScript" Content="Save Script" Command="{Binding AddScriptCommand}" CommandParameter="{Binding ElementName=entry_ScriptName, Path=Text}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="button_addScript_Click" Margin="3,0,0,0"/>
+        <Button x:Name="button_addScript" Content="Save Script" Command="{Binding AddScriptCommand}" CommandParameter="{Binding Text, ElementName=entry_ScriptName}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="button_addScript_Click" Margin="3,0,0,0"/>
         <TextBox x:Name="entry_ScriptName" HorizontalAlignment="Left" Height="23" Margin="3,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="button_editScript" Content="Edit Script" HorizontalAlignment="Left" Margin="78,0,0,0" VerticalAlignment="Top" Width="75" Click="button_editScript_Click"/>
         <Button x:Name="button_newScript" Content="New Script" HorizontalAlignment="Left" Margin="153,0,0,0" VerticalAlignment="Top" Width="70" RenderTransformOrigin="0.485,-0.347" Click="button_newScript_Click"/>
-        <Button x:Name="button_deleteScript" Content="Remove script" Command="{Binding DeleteButtonCommand}" CommandParameter="{Binding ElementName=ScriptCol, Path=SelectedItem}" HorizontalAlignment="Left" Margin="223,0,0,0" VerticalAlignment="Top" Width="93" Click="button_deleteScript_Click"/>
+        <Button x:Name="button_deleteScript" Content="Remove script" Command="{Binding DeleteButtonCommand}" CommandParameter="{Binding SelectedItem, ElementName=ScriptCol}" HorizontalAlignment="Left" Margin="223,0,0,0" VerticalAlignment="Top" Width="93" Click="button_deleteScript_Click"/>
         <avalonEdit:TextEditor
         
-    xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
-    Name="ScriptEditor"
-    FontFamily="Consolas"
-    SyntaxHighlighting="C#"
-    FontSize="11pt" Margin="200,52,202,50" Visibility="Visible"/>
+			xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+			x:Name="ScriptEditor"
+			FontFamily="Consolas"
+			SyntaxHighlighting="C#"
+			FontSize="11pt" Margin="223,52,179,50" Visibility="Visible"/>
         <TextBox x:Name="entry_ScriptDesc" HorizontalAlignment="Left" Height="23" Margin="128,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <DataGrid x:Name="BreakPointsMargin" AutoGenerateColumns="False" MinWidth="15" MinHeight="25" Margin="178,52,367,31" MaxWidth="45" HorizontalAlignment="Left" VerticalAlignment="Top" ScrollViewer.CanContentScroll="True" UseLayoutRounding="True" HeadersVisibility="None" GridLinesVisibility="None" HorizontalScrollBarVisibility="Disabled" RowBackground="Black" SelectionUnit="Cell" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False">
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn Header="break" />
+    </DataGrid.Columns>
+</DataGrid>
     </Grid>
-    
+
 </Window>
