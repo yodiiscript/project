@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using ICSharpCode.AvalonEdit;
 using ICSharpCode.AvalonEdit.Highlighting.Xshd;
 using ICSharpCode.AvalonEdit.Highlighting;
@@ -27,7 +28,10 @@ namespace Yodii_script.IDE
     public partial class MainWindow : Window
     {
         ScriptContext _scriptCon = new ScriptContext();
-        List<CheckBox> _breakpoints = new List<CheckBox>();
+        List<object> _breakpoints = new List<object>();
+        DispatcherTimer _timer = new System.Windows.Threading.DispatcherTimer();
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -35,20 +39,37 @@ namespace Yodii_script.IDE
             this.ScriptCol.ItemsSource = _scriptCon.ScriptList;
             LoadYodiiSyntax();
             LoadEditorConfig();
+            BreakPointsMargin.ItemsSource = _breakpoints;
+            _timer.Tick += new EventHandler(SyncMarginWithLines);
+            _timer.Interval = new TimeSpan( 0, 0, 2 );
+            _timer.Start();
         }
 
         private void LoadIDEConfig()
         {
-            this.Background = new SolidColorBrush( Colors.LightGray );
-            this.ScriptCol.Background = new SolidColorBrush( Colors.Black );
-            this.ScriptCol.Foreground = new SolidColorBrush( Colors.White );
+            Background = new SolidColorBrush( Colors.LightGray );
+            ScriptCol.Background = new SolidColorBrush( Colors.Black );
+            ScriptCol.Foreground = new SolidColorBrush( Colors.White );
             _scriptCon.Load();
+            
         }
 
-        private void SyncMarginWithLines()
+        /// <summary>
+        /// Synchronizes the number of lines and breakpoints
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SyncMarginWithLines(object sender, EventArgs e)
         {
-
-        }
+            _breakpoints.Add( "lol" );
+            List<object> newBreakPoints = new List<object>();
+            int lines = ScriptEditor.LineCount;
+            for( int i = 0; i < lines; i += 1 )
+            {
+                newBreakPoints.Add( "x" );
+            }
+            _breakpoints = newBreakPoints;
+       }
 
         private void button_addScript_Click( object sender, RoutedEventArgs e )
         {
@@ -92,17 +113,10 @@ namespace Yodii_script.IDE
             this.ScriptEditor.WordWrap = true;
             this.ScriptEditor.Background = new SolidColorBrush( Colors.Black );
             this.ScriptEditor.Foreground = new SolidColorBrush( Colors.White );
-
-            BreakPointsMargin.ItemsSource = _breakpoints;
             BreakPointsMargin.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
-            BreakPointsMargin.Background = new SolidColorBrush(Colors.Black);
+            BreakPointsMargin.Background = new SolidColorBrush( Colors.Black );
             BreakPointsMargin.Height = ScriptEditor.Height;
-            _breakpoints.Add( new CheckBox() );
-            _breakpoints.Add( new CheckBox() );
-            _breakpoints.Add( new CheckBox() );
-            _breakpoints.Add( new CheckBox() );
-            _breakpoints.Add( new CheckBox() );
-            _breakpoints.Add( new CheckBox() );
+
         }
 
         private void button_deleteScript_Click( object sender, RoutedEventArgs e )
@@ -127,6 +141,11 @@ namespace Yodii_script.IDE
                 ScriptEditor.Visibility = Visibility.Visible;
                 ScriptEditor.Text = _scriptCon.ScriptList[this.ScriptCol.SelectedIndex].SourceCode;
             }
+        }
+
+        private void Syn( object sender, EventArgs e )
+        {
+
         }
 
 

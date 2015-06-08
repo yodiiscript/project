@@ -20,7 +20,6 @@
         <Button x:Name="button_newScript" Content="New Script" HorizontalAlignment="Left" Margin="153,0,0,0" VerticalAlignment="Top" Width="70" RenderTransformOrigin="0.485,-0.347" Click="button_newScript_Click"/>
         <Button x:Name="button_deleteScript" Content="Remove script" Command="{Binding DeleteButtonCommand}" CommandParameter="{Binding SelectedItem, ElementName=ScriptCol}" HorizontalAlignment="Left" Margin="223,0,0,0" VerticalAlignment="Top" Width="93" Click="button_deleteScript_Click"/>
         <avalonEdit:TextEditor
-        
 			xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
 			x:Name="ScriptEditor"
 			FontFamily="Consolas"
@@ -28,12 +27,23 @@
 			FontSize="11pt" Margin="223,52,179,50" Visibility="Visible"/>
         <TextBox x:Name="entry_ScriptDesc" HorizontalAlignment="Left" Height="23" Margin="128,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <DataGrid x:Name="BreakPointsMargin" AutoGenerateColumns="False" MinWidth="15" MinHeight="20" Margin="201,52,0,0" MaxWidth="45" ScrollViewer.CanContentScroll="False" 
-                  CanUserAddRows="False" UseLayoutRounding="False" HeadersVisibility="None" GridLinesVisibility="None" HorizontalScrollBarVisibility="Disabled" SelectionUnit="Cell" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" Width="22" Height="171" VerticalAlignment="Top" VerticalContentAlignment="Stretch" VerticalScrollBarVisibility="Disabled" SelectionMode="Single" RowHeight="16.8" HorizontalAlignment="Left" MaxColumnWidth="20" RowBackground="#00000000" RowDetailsVisibilityMode="Visible">
+                   CanUserAddRows="False" UseLayoutRounding="False" HeadersVisibility="None" GridLinesVisibility="None" HorizontalScrollBarVisibility="Disabled" SelectionUnit="Cell" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" Width="22" Height="171" VerticalAlignment="Top" VerticalContentAlignment="Stretch" VerticalScrollBarVisibility="Disabled" SelectionMode="Single" RowHeight="16.8" HorizontalAlignment="Left" MaxColumnWidth="20" RowBackground="#00000000" RowDetailsVisibilityMode="Visible" Background="#02000000">
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn Header="break" />
+                <DataGridCheckBoxColumn Header="break" Visibility="Visible"/>
             </DataGrid.Columns>
+            <DataGrid.Resources>
+                <Style x:Key="{x:Type DataGridCell}" TargetType="{x:Type DataGridCell}">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.Resources>
+                
 
         </DataGrid>
+
     </Grid>
 
 </Window>
