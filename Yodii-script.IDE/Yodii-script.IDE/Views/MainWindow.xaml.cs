@@ -27,7 +27,7 @@ namespace Yodii_script.IDE
     public partial class MainWindow : Window
     {
         ScriptContext _scriptCon = new ScriptContext();
-
+        List<CheckBox> _breakpoints = new List<CheckBox>();
         public MainWindow()
         {
             InitializeComponent();
@@ -44,7 +44,11 @@ namespace Yodii_script.IDE
             this.ScriptCol.Foreground = new SolidColorBrush( Colors.White );
             _scriptCon.Load();
         }
-        
+
+        private void SyncMarginWithLines()
+        {
+
+        }
 
         private void button_addScript_Click( object sender, RoutedEventArgs e )
         {
@@ -88,11 +92,17 @@ namespace Yodii_script.IDE
             this.ScriptEditor.WordWrap = true;
             this.ScriptEditor.Background = new SolidColorBrush( Colors.Black );
             this.ScriptEditor.Foreground = new SolidColorBrush( Colors.White );
-            List<CheckBox> checkboxes = new List<CheckBox>();
-            checkboxes.Add( new CheckBox() );
-            BreakPointsMargin.ItemsSource = checkboxes;
 
-
+            BreakPointsMargin.ItemsSource = _breakpoints;
+            BreakPointsMargin.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
+            BreakPointsMargin.Background = new SolidColorBrush(Colors.Black);
+            BreakPointsMargin.Height = ScriptEditor.Height;
+            _breakpoints.Add( new CheckBox() );
+            _breakpoints.Add( new CheckBox() );
+            _breakpoints.Add( new CheckBox() );
+            _breakpoints.Add( new CheckBox() );
+            _breakpoints.Add( new CheckBox() );
+            _breakpoints.Add( new CheckBox() );
         }
 
         private void button_deleteScript_Click( object sender, RoutedEventArgs e )

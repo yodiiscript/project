@@ -27,11 +27,13 @@
 			SyntaxHighlighting="C#"
 			FontSize="11pt" Margin="223,52,179,50" Visibility="Visible"/>
         <TextBox x:Name="entry_ScriptDesc" HorizontalAlignment="Left" Height="23" Margin="128,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <DataGrid x:Name="BreakPointsMargin" AutoGenerateColumns="False" MinWidth="15" MinHeight="25" Margin="178,52,367,31" MaxWidth="45" HorizontalAlignment="Left" VerticalAlignment="Top" ScrollViewer.CanContentScroll="True" UseLayoutRounding="True" HeadersVisibility="None" GridLinesVisibility="None" HorizontalScrollBarVisibility="Disabled" RowBackground="Black" SelectionUnit="Cell" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False">
+        <DataGrid x:Name="BreakPointsMargin" AutoGenerateColumns="False" MinWidth="15" MinHeight="20" Margin="201,52,0,0" MaxWidth="45" ScrollViewer.CanContentScroll="False" 
+                  CanUserAddRows="False" UseLayoutRounding="False" HeadersVisibility="None" GridLinesVisibility="None" HorizontalScrollBarVisibility="Disabled" SelectionUnit="Cell" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" Width="22" Height="171" VerticalAlignment="Top" VerticalContentAlignment="Stretch" VerticalScrollBarVisibility="Disabled" SelectionMode="Single" RowHeight="16.8" HorizontalAlignment="Left" MaxColumnWidth="20" RowBackground="#00000000" RowDetailsVisibilityMode="Visible">
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn Header="break" />
-    </DataGrid.Columns>
-</DataGrid>
+            </DataGrid.Columns>
+
+        </DataGrid>
     </Grid>
 
 </Window>
