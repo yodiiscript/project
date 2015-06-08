@@ -58,7 +58,6 @@ namespace Yodii_script.IDE
 
         private void button_newScript_Click( object sender, RoutedEventArgs e )
         {
-            ScriptEditor.Visibility = Visibility.Visible;
             ScriptEditor.Text = string.Empty;
         }
 
@@ -66,7 +65,6 @@ namespace Yodii_script.IDE
         {
             if( ScriptCol.SelectedItem != null )
             {
-                ScriptEditor.Visibility = Visibility.Visible;
                 ScriptEditor.Text = _scriptCon.ScriptList[this.ScriptCol.SelectedIndex].SourceCode;
             }
         }
