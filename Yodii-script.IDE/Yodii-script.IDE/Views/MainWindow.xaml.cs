@@ -28,7 +28,7 @@ namespace Yodii_script.IDE
     public partial class MainWindow : Window
     {
         ScriptContext _scriptCon = new ScriptContext();
-        List<object> _breakpoints = new List<object>();
+        List<int> _breakpoints = new List<int>();
         DispatcherTimer _timer = new System.Windows.Threading.DispatcherTimer();
 
 
@@ -53,7 +53,7 @@ namespace Yodii_script.IDE
         /// <param name="e"></param>
         private void SyncMarginWithLines( object sender, EventArgs e )
         {
-            List<object> newBreakPoints = new List<object>();
+            List<int> newBreakPoints = new List<int>();
             int lines = ScriptEditor.LineCount;
             for( int i = 0; i < lines; i += 1 )
             {
