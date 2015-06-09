@@ -41,8 +41,26 @@ namespace Yodii_script.IDE
             LoadEditorConfig();
             BreakPointsMargin.ItemsSource = _breakpoints;
             _timer.Tick += new EventHandler(SyncMarginWithLines);
-            _timer.Interval = new TimeSpan( 0, 0, 2 );
+            _timer.Interval = new TimeSpan( 0, 0, 0, 2 );
             _timer.Start();
+            
+        }
+
+        /// <summary>
+        /// Synchronizes the number of lines and breakpoints
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SyncMarginWithLines( object sender, EventArgs e )
+        {
+            List<object> newBreakPoints = new List<object>();
+            int lines = ScriptEditor.LineCount;
+            for( int i = 0; i < lines; i += 1 )
+            {
+                newBreakPoints.Add( i );
+            }
+            _breakpoints = newBreakPoints;
+            BreakPointsMargin.ItemsSource = _breakpoints;
         }
 
         private void LoadIDEConfig()
@@ -53,23 +71,6 @@ namespace Yodii_script.IDE
             _scriptCon.Load();
             
         }
-
-        /// <summary>
-        /// Synchronizes the number of lines and breakpoints
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void SyncMarginWithLines(object sender, EventArgs e)
-        {
-            _breakpoints.Add( "lol" );
-            List<object> newBreakPoints = new List<object>();
-            int lines = ScriptEditor.LineCount;
-            for( int i = 0; i < lines; i += 1 )
-            {
-                newBreakPoints.Add( "x" );
-            }
-            _breakpoints = newBreakPoints;
-       }
 
         private void button_addScript_Click( object sender, RoutedEventArgs e )
         {
@@ -116,7 +117,6 @@ namespace Yodii_script.IDE
             BreakPointsMargin.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
             BreakPointsMargin.Background = new SolidColorBrush( Colors.Black );
             BreakPointsMargin.Height = ScriptEditor.Height;
-
         }
 
         private void button_deleteScript_Click( object sender, RoutedEventArgs e )
@@ -143,10 +143,6 @@ namespace Yodii_script.IDE
             }
         }
 
-        private void Syn( object sender, EventArgs e )
-        {
-
-        }
 
 
     }
