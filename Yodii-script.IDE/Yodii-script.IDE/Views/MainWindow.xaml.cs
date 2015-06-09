@@ -40,10 +40,6 @@ namespace Yodii_script.IDE
             LoadYodiiSyntax();
             LoadEditorConfig();
             BreakPointsMargin.ItemsSource = _breakpoints;
-            _timer.Tick += new EventHandler(SyncMarginWithLines);
-            _timer.Interval = new TimeSpan( 0, 0, 0, 2 );
-            _timer.Start();
-            
         }
 
         /// <summary>
@@ -61,6 +57,7 @@ namespace Yodii_script.IDE
             }
             _breakpoints = newBreakPoints;
             BreakPointsMargin.ItemsSource = _breakpoints;
+            BreakPointsMargin.ScrollIntoView( _breakpoints[_breakpoints.Count - 1] );
         }
 
         private void LoadIDEConfig()
@@ -114,9 +111,9 @@ namespace Yodii_script.IDE
             this.ScriptEditor.WordWrap = true;
             this.ScriptEditor.Background = new SolidColorBrush( Colors.Black );
             this.ScriptEditor.Foreground = new SolidColorBrush( Colors.White );
-            BreakPointsMargin.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
+            BreakPointsMargin.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
             BreakPointsMargin.Background = new SolidColorBrush( Colors.Black );
-            BreakPointsMargin.Height = ScriptEditor.Height;
+            BreakPointsMargin.Height = BreakPointsMargin.RowHeight*36;
         }
 
         private void button_deleteScript_Click( object sender, RoutedEventArgs e )
@@ -142,8 +139,6 @@ namespace Yodii_script.IDE
                 ScriptEditor.Text = _scriptCon.ScriptList[this.ScriptCol.SelectedIndex].SourceCode;
             }
         }
-
-
 
     }
 }
