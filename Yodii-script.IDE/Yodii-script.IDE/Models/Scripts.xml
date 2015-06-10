@@ -14,4 +14,14 @@ b</sourceCode>
 
 aa</sourceCode>
   </Script>
+  <Script name="test">
+    <language>ys</language>
+    <description>test</description>
+    <sourceCode>test</sourceCode>
+  </Script>
+  <Script name="test2">
+    <language>ys</language>
+    <description>ded</description>
+    <sourceCode>zfgebr</sourceCode>
+  </Script>
 </Scripts>
