@@ -18,7 +18,7 @@ namespace Yodii_script.IDE.View_Models
         {
             get
             {
-                ScriptSerializer.Load(_scriptCon);
+                //ScriptSerializer.Load(_scriptCon);
                 return _scriptCon.ScriptList;
             }
         }

@@ -43,8 +43,6 @@
                     </Style.Triggers>
                 </Style>
             </DataGrid.Resources>
-
-
         </DataGrid>
 
     </Grid>

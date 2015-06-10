@@ -58,6 +58,12 @@ namespace Yodii_script.IDE
             _breakpoints = newBreakPoints;
             BreakPointsMargin.ItemsSource = _breakpoints;
             BreakPointsMargin.ScrollIntoView( _breakpoints[_breakpoints.Count - 1] );
+            
+        }
+
+        private void BreakPointsScrollChanged( object sender, ScrollChangedEventArgs e )
+        {
+            ScriptEditor.ScrollToVerticalOffset( e.VerticalOffset );
         }
 
         private void LoadIDEConfig()
@@ -77,6 +83,8 @@ namespace Yodii_script.IDE
                 if(!_scriptCon.Exists(entry_ScriptName.Text))
                 {
                     _scriptCon.AddScript( script );
+
+                
                 }
                 else
                 {
@@ -137,8 +145,11 @@ namespace Yodii_script.IDE
             {
                 ScriptEditor.Visibility = Visibility.Visible;
                 ScriptEditor.Text = _scriptCon.ScriptList[this.ScriptCol.SelectedIndex].SourceCode;
+                _scriptCon.CurrentScript = _scriptCon.ScriptList[this.ScriptCol.SelectedIndex];
+                _scriptCon.ScriptList[this.ScriptCol.SelectedIndex].IsBeingEdited = true;
             }
         }
+
 
     }
 }

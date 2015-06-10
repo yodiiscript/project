@@ -1,18 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Scripts>
-  <Script name="add">
+  <Script name="tst">
     <language>ys</language>
-    <description>trash script</description>
-    <sourceCode>let a = 8;
-let b = 2;
-
-let res = a+b;</sourceCode>
-  </Script>
-  <Script name="mul">
-    <language>ys</language>
-    <description>mul</description>
+    <description>zob</description>
     <sourceCode>let a;
-let b;
-let c = a*b;</sourceCode>
+</sourceCode>
   </Script>
 </Scripts>

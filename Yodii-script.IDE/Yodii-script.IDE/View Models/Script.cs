@@ -12,6 +12,7 @@ namespace Yodii_script.IDE.View_Models
         string _language; 
         string _description; 
         string _sourceCode;
+        bool _isBeingEdited;
 
         internal Script( string name, string language, string description, string sourceCode )
         {
@@ -59,6 +60,11 @@ namespace Yodii_script.IDE.View_Models
                 }
             }
         }
+        public bool IsBeingEdited
+        {
+            get { return _isBeingEdited; }
+            internal set { _isBeingEdited = value; }
+        }
         
         public string Language
         {
@@ -99,7 +105,7 @@ namespace Yodii_script.IDE.View_Models
                 if( _isToggled != value )
                 {
                     _isToggled = value;
-                    OnPropertyChanged( new PropertyChangedEventArgs( "isToggled" ) );
+                    OnPropertyChanged( new PropertyChangedEventArgs( "IsToggled" ) );
                 }
             }
         }

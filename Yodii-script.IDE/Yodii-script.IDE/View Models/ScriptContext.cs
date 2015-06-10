@@ -10,6 +10,7 @@ namespace Yodii_script.IDE.View_Models
     public class ScriptContext : INotifyPropertyChanged
     {
         ScriptList _scriptList = new ScriptList();
+        Script _currentScript;
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void RaisePropertyChanged( [CallerMemberName] string name = null )
@@ -108,6 +109,11 @@ namespace Yodii_script.IDE.View_Models
             get { return _scriptList; }
             private set { _scriptList = value; }
         }
-       
+
+        public Script CurrentScript
+        {
+            get { return _currentScript; }
+            set {_currentScript = value; }
+        }
     }
 }
