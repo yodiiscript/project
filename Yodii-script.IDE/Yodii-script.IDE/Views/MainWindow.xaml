@@ -18,7 +18,7 @@
         <Label Content="Source Code:" HorizontalAlignment="Left" Margin="200,146,0,0" VerticalAlignment="Top"/>
         <Button x:Name="button_addScript" Content="Save" Command="{Binding AddScriptCommand}"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="359,654,0,0" />
         <Button x:Name="button_editScript" Content="Edit" Command="{Binding EditScriptCommand}" CommandParameter="{Binding ElementName=ScriptCol, Path=SelectedItem}" HorizontalAlignment="Left" Margin="5,14,0,0" VerticalAlignment="Top" Width="79"/>
-        <Button x:Name="button_newScript" Content="Clear" Command="{Binding ClearScriptCommand}" HorizontalAlignment="Left" Margin="462,654,0,0" VerticalAlignment="Top" Width="70" RenderTransformOrigin="0.485,-0.347" Click="button_newScript_Click"/>
+        <Button x:Name="button_clearScript" Content="Clear" Command="{Binding ClearScriptCommand}" HorizontalAlignment="Left" Margin="462,654,0,0" VerticalAlignment="Top" Width="70" RenderTransformOrigin="0.485,-0.347"/>
         <Button x:Name="button_deleteScript" Content="Delete" Command="{Binding DeleteScriptCommand}" CommandParameter="{Binding ElementName=ScriptCol, Path=SelectedIndex}" HorizontalAlignment="Left" Margin="99,14,0,0" VerticalAlignment="Top" Width="79"/>
         <TextBox x:Name="entry_ScriptName" Text="{Binding Path=NameSource, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="278,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="415"/>
         <TextBox x:Name="entry_ScriptName_Copy" Text="{Binding Path=DescriptionSource, Mode=TwoWay}" HorizontalAlignment="Left" Height="38" Margin="278,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="415"/>

@@ -25,15 +25,12 @@ namespace Yodii_script.IDE
     /// </summary>
     public partial class MainWindow : Window
     {
-        ScriptContext _scriptCon = new ScriptContext();
-
         public MainWindow()
         {
             InitializeComponent();
             LoadYodiiSyntax();
             LoadEditorConfig();
         }
-
         private void LoadYodiiSyntax()
         {
             // Load a different syntax config file
@@ -54,19 +51,6 @@ namespace Yodii_script.IDE
             this.ScriptEditor.Foreground = new SolidColorBrush( Colors.White );
             
 
-        }
-
-        private void button_newScript_Click( object sender, RoutedEventArgs e )
-        {
-            ScriptEditor.Text = string.Empty;
-        }
-
-        private void button_editScript_Click( object sender, RoutedEventArgs e )
-        {
-            if( ScriptCol.SelectedItem != null )
-            {
-                ScriptEditor.Text = _scriptCon.ScriptList[this.ScriptCol.SelectedIndex].SourceCode;
-            }
         }
 
 
