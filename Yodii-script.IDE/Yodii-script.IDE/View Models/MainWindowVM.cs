@@ -94,13 +94,10 @@ namespace Yodii_script.IDE.View_Models
         }
         public MainWindowVM()
         {
-            //testButtonCommand = new RelayCommand(ShowMessage, param => this.canExecute);
-            //toggleExecuteCommand = new RelayCommand(ChangeCanExecute);
             addScriptCommand = new RelayCommand( AddScript, CanExecuteAddScript );
-            editScriptCommand = new RelayCommand( EditScript );
-            //addScriptCommand = new RelayCommand( AddScript );
-            deleteScriptCommand = new RelayCommand( DeleteScript );
-            clearScriptCommand = new RelayCommand( ClearScript );
+            editScriptCommand = new RelayCommand( EditScript, CanExecuteEditScript );
+            deleteScriptCommand = new RelayCommand( DeleteScript, CanExecuteDeleteScript );
+            clearScriptCommand = new RelayCommand( ClearScript, CanExecuteClearScript );
 
             _document = new TextDocument();
         }
@@ -120,17 +117,7 @@ namespace Yodii_script.IDE.View_Models
         {
             get { return clearScriptCommand; }
         }
-        private void DeleteScript( object arg )
-        {
-            if( arg != null )
-            {
-                int index = (int)arg;
-                if( index >= 0 )
-                {
-                    _scriptCon.Remove( _scriptCon.ScriptList[index].Name );
-                }               
-            }
-        }
+        
         private void AddScript( object obj )
         {
             //object[] args = (object[])obj;
@@ -165,18 +152,62 @@ namespace Yodii_script.IDE.View_Models
                 return false;
             }
         }
-        private void EditScript( object obj )
-        {
-            if( obj != null )
-            {
-                _nameSource = obj.ToString();
-            }
-        }
         private void ClearScript( object obj )
         {
             NameSource = "";
             DescriptionSource = "";
             _document.Text = "";
+        }
+        private bool CanExecuteClearScript( object obj )
+        {
+            if( !String.IsNullOrEmpty( _nameSource ) || !String.IsNullOrEmpty( _descriptionSource ) || !String.IsNullOrEmpty( _document.Text ) )
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        private void EditScript( object obj )
+        {
+                Script s = (Script)obj;
+                NameSource = s.Name;
+                DescriptionSource = s.Description;
+                _document.Text = s.SourceCode;
+        }
+        private bool CanExecuteEditScript( object obj )
+        {
+            if( obj != null )
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        private void DeleteScript( object obj )
+        {
+            if( obj != null )
+            {
+                int index = (int)obj;
+                if( index >= 0 )
+                {
+                    _scriptCon.Remove( _scriptCon.ScriptList[index].Name );
+                }
+            }
+        }
+        private bool CanExecuteDeleteScript( object obj )
+        {
+            if( obj != null && (int)obj != -1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
