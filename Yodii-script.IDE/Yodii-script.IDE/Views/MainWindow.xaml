@@ -33,13 +33,13 @@
         <Button x:Name="button_deleteScript" Content="Delete" Command="{Binding DeleteScriptCommand}" CommandParameter="{Binding ElementName=ScriptCol, Path=SelectedIndex}" HorizontalAlignment="Left" Margin="99,14,0,0" VerticalAlignment="Top" Width="79"/>
         <TextBox x:Name="entry_ScriptName" Text="{Binding Path=NameSource, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="278,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="415"/>
         <TextBox x:Name="entry_ScriptName_Copy" Text="{Binding Path=DescriptionSource, Mode=TwoWay}" HorizontalAlignment="Left" Height="38" Margin="278,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="415"/>
-        <avalonEdit:TextEditor
-        
-    xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
-    Name="ScriptEditor"
-    FontFamily="Consolas"
-    SyntaxHighlighting="C#"
-    FontSize="11pt" Margin="200,177,10,49" Visibility="Visible"/>
+
+        <avalonEdit:TextEditor xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+                               Name="ScriptEditor"
+                               Document="{Binding Path=Document}"
+                               FontFamily="Consolas"
+                               SyntaxHighlighting="C#"
+                               FontSize="11pt" Margin="200,177,10,49" Visibility="Visible"/>
 
 
     </Grid>

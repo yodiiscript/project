@@ -1,18 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Scripts>
-  <Script name="aaa">
-    <language>ys</language>
-    <description>trash script</description>
-    <sourceCode>aa
-aa
-
-a</sourceCode>
-  </Script>
   <Script name="bbb">
     <language>ys</language>
     <description>trash script</description>
     <sourceCode>bb
 
 b</sourceCode>
+  </Script>
+  <Script name="aaa">
+    <language>ys</language>
+    <description>trash script</description>
+    <sourceCode>aaa
+
+aa</sourceCode>
   </Script>
 </Scripts>

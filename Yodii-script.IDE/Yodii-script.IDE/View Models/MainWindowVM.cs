@@ -12,46 +12,66 @@ namespace Yodii_script.IDE.View_Models
 {
     class MainWindowVM : INotifyPropertyChanged
     {
+        ScriptContext _scriptCon = new ScriptContext();
         private ICommand addScriptCommand;
         private ICommand deleteScriptCommand;
-        //private ICommand newScriptCommand;
         private ICommand editScriptCommand;
         private ICommand clearScriptCommand;
-        ScriptContext _scriptCon = new ScriptContext();
-        private string nameSource;
-        private string descriptionSource;
-        private string codeSource;
+        private string _nameSource;
+        private string _descriptionSource;
+        private string _codeSource;
+        private TextDocument _document;
+
         public string NameSource
         {
-            get { return nameSource; }
+            get { return _nameSource; }
             set
             {
-                nameSource = value;
-                if( PropertyChanged != null )
-                    PropertyChanged( this,
-                        new PropertyChangedEventArgs( "NameSource" ) );
+                if( _nameSource != value )
+                {
+                    _nameSource = value;
+                    var h = PropertyChanged;
+                    if( h != null ) h( this, new PropertyChangedEventArgs( "NameSource" ) );
+                }
             }
         }
         public string DescriptionSource
         {
-            get { return descriptionSource; }
+            get { return _descriptionSource; }
             set
             {
-                descriptionSource = value;
-                if( PropertyChanged != null )
-                    PropertyChanged( this,
-                        new PropertyChangedEventArgs( "DescriptionSource" ) );
+                if( _descriptionSource != value )
+                {
+                    _descriptionSource = value;
+                    var h = PropertyChanged;
+                    if( h != null ) h( this, new PropertyChangedEventArgs( "DescriptionSource" ) );
+                }
             }
         }
         public string CodeSource
         {
-            get { return codeSource; }
+            get { return _codeSource; }
             set
             {
-                codeSource = value;
-                if( PropertyChanged != null )
-                    PropertyChanged( this,
-                        new PropertyChangedEventArgs( "CodeSource" ) );
+                if( _codeSource != value )
+                {
+                    _codeSource = value;
+                    var h = PropertyChanged;
+                    if( h != null ) h( this, new PropertyChangedEventArgs( "CodeSource" ) );
+                }
+            }
+        }
+        public TextDocument Document
+        {
+            get { return _document; }
+            set
+            {
+                if( _document != value )
+                {
+                    _document = value;
+                    var h = PropertyChanged;
+                    if( h != null ) h( this, new PropertyChangedEventArgs( "Document" ) );
+                }
             }
         }
         public event PropertyChangedEventHandler  PropertyChanged;
@@ -81,6 +101,8 @@ namespace Yodii_script.IDE.View_Models
             //addScriptCommand = new RelayCommand( AddScript );
             deleteScriptCommand = new RelayCommand( DeleteScript );
             clearScriptCommand = new RelayCommand( ClearScript );
+
+            _document = new TextDocument();
         }
         public ICommand DeleteScriptCommand
         {
@@ -109,43 +131,17 @@ namespace Yodii_script.IDE.View_Models
                 }               
             }
         }
-        private void AddScript2( object obj )
-        {
-            object[] args = (object[])obj;
-            string name = (string)args[0];
-            object doc = args[1];
-            TextDocument d = (TextDocument)doc;
-            string sourceCode = d.Text;
-
-            if( !String.IsNullOrEmpty( sourceCode ) )
-            {
-                Script script = _scriptCon.CreateScript( name, "ys", "trash script", sourceCode );
-
-                if( !_scriptCon.Exists( name ) )
-                {
-                    _scriptCon.AddScript( script );
-                }
-                else
-                {
-                    MessageBoxResult overwrite = MessageBox.Show( "A script with this name exists \n want to overwrite ?", "Script found", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No );
-                    if( overwrite == MessageBoxResult.Yes )
-                    {
-                        _scriptCon.Update( script.Name, script );
-                    }
-                }
-            }
-        }
         private void AddScript( object obj )
         {
-            object[] args = (object[])obj;
-            string name = (string)args[0];
-            object doc = args[1];
-            TextDocument d = (TextDocument)doc;
-            string sourceCode = d.Text;
+            //object[] args = (object[])obj;
+            //string name = (string)args[0];
+            //object doc = args[1];
+            //TextDocument d = (TextDocument)doc;
+            //string sourceCode = d.Text;
 
-            Script script = _scriptCon.CreateScript( nameSource, "ys", DescriptionSource, sourceCode );
+            Script script = _scriptCon.CreateScript( _nameSource, "ys", _descriptionSource, _document.Text );
 
-            if( !_scriptCon.Exists( nameSource ) )
+            if( !_scriptCon.Exists( _nameSource ) )
             {
                  _scriptCon.AddScript( script );
             }
@@ -160,7 +156,7 @@ namespace Yodii_script.IDE.View_Models
         }
         private bool CanExecuteAddScript(object obj)
         {
-            if( !String.IsNullOrEmpty( NameSource ) && !String.IsNullOrEmpty( DescriptionSource ) )
+            if( !String.IsNullOrEmpty( _nameSource ) && !String.IsNullOrEmpty( _descriptionSource ) && !String.IsNullOrEmpty( _document.Text ) )
             {
                 return true;
             }
@@ -173,13 +169,14 @@ namespace Yodii_script.IDE.View_Models
         {
             if( obj != null )
             {
-                NameSource = obj.ToString();
+                _nameSource = obj.ToString();
             }
         }
         private void ClearScript( object obj )
         {
             NameSource = "";
             DescriptionSource = "";
+            _document.Text = "";
         }
     }
 }
