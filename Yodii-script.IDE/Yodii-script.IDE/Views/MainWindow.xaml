@@ -27,22 +27,14 @@
 			FontSize="11pt" Margin="223,52,179,50" Visibility="Visible" TextChanged="SyncMarginWithLines"/>
         <TextBox x:Name="entry_ScriptDesc" HorizontalAlignment="Left" Height="23" Margin="128,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <DataGrid x:Name="BreakPointsMargin" AutoGenerateColumns="False" MinWidth="25" MinHeight="20" Margin="183,52,0,0" MaxWidth="65" ScrollViewer.CanContentScroll="False" 
-                   CanUserAddRows="False" UseLayoutRounding="False" HeadersVisibility="None" GridLinesVisibility="None" HorizontalScrollBarVisibility="Disabled" SelectionUnit="Cell"
+                   CanUserAddRows="False" UseLayoutRounding="False" HeadersVisibility="None" HorizontalScrollBarVisibility="Disabled" SelectionUnit="Cell"
                    CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" Width="38" Height="171" VerticalAlignment="Top" VerticalContentAlignment="Stretch" 
                    VerticalScrollBarVisibility="Visible" SelectionMode="Single" RowHeight="17.1" HorizontalAlignment="Left" MaxColumnWidth="20" RowBackground="#00000000" 
-                   RowDetailsVisibilityMode="Visible" Background="#02000000" >
+                   RowDetailsVisibilityMode="Visible" Background="#02000000" HorizontalGridLinesBrush="#FF53B269" VerticalGridLinesBrush="{x:Null}" IsSynchronizedWithCurrentItem="True" Foreground="#FFC3C3C3" CellEditEnding="test_datagrid" GridLinesVisibility="Horizontal" CanUserResizeRows="False" FontWeight="Bold" >
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn Header="break" Visibility="Visible"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Foreground="#FF6CEA25"/>
             </DataGrid.Columns>
-            <DataGrid.Resources>
-                <Style x:Key="{x:Type DataGridCell}" TargetType="{x:Type DataGridCell}">
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Visibility" Value="Visible"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </DataGrid.Resources>
+
         </DataGrid>
 
     </Grid>

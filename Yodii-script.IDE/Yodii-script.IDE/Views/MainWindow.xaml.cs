@@ -53,18 +53,22 @@ namespace Yodii_script.IDE
             int lines = ScriptEditor.LineCount;
             for( int i = 0; i < lines; i += 1 )
             {
-                newBreakPoints.Add( i );
+                newBreakPoints.Add( 0 );
             }
             _breakpoints = newBreakPoints;
             BreakPointsMargin.ItemsSource = _breakpoints;
             BreakPointsMargin.ScrollIntoView( _breakpoints[_breakpoints.Count - 1] );
-            
+
         }
 
-        private void BreakPointsScrollChanged( object sender, ScrollChangedEventArgs e )
+        public void test_datagrid(Object sender, DataGridCellEditEndingEventArgs e)
         {
-            ScriptEditor.ScrollToVerticalOffset( e.VerticalOffset );
+            TextBox t = e.EditingElement as TextBox;
+            int idx = e.Row.GetIndex();
+            _breakpoints[idx] = idx;
         }
+
+
 
         private void LoadIDEConfig()
         {
@@ -72,7 +76,6 @@ namespace Yodii_script.IDE
             ScriptCol.Background = new SolidColorBrush( Colors.Black );
             ScriptCol.Foreground = new SolidColorBrush( Colors.White );
             _scriptCon.Load();
-            
         }
 
         private void button_addScript_Click( object sender, RoutedEventArgs e )
@@ -132,6 +135,7 @@ namespace Yodii_script.IDE
                 _scriptCon.Remove( _scriptCon.ScriptList[idx].Name );
             }
         }
+        
 
         private void button_newScript_Click( object sender, RoutedEventArgs e )
         {
@@ -147,8 +151,10 @@ namespace Yodii_script.IDE
                 ScriptEditor.Text = _scriptCon.ScriptList[this.ScriptCol.SelectedIndex].SourceCode;
                 _scriptCon.CurrentScript = _scriptCon.ScriptList[this.ScriptCol.SelectedIndex];
                 _scriptCon.ScriptList[this.ScriptCol.SelectedIndex].IsBeingEdited = true;
+                
             }
         }
+
 
 
     }
