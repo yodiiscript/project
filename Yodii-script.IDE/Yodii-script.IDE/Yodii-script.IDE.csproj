@@ -9,10 +9,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Yodii_script.IDE</RootNamespace>
     <AssemblyName>Yodii-script.IDE</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -65,6 +66,9 @@
     <Compile Include="View Models\MainWindowVM.cs" />
     <Compile Include="View Models\RelayCommand.cs" />
     <Compile Include="View Models\ScriptSerializer.cs" />
+    <Compile Include="Views\Watch.xaml.cs">
+      <DependentUpon>Watch.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -79,6 +83,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Watch.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -110,6 +118,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Yodii.Script.Debugger\Yodii.Script.Debugger.csproj">
+      <Project>{576274a5-5fbf-4803-91db-96effcf4159a}</Project>
+      <Name>Yodii.Script.Debugger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yodii.Script\Yodii.Script.csproj">
+      <Project>{388870e4-cf4e-45b5-bbec-ec6fad2e7490}</Project>
+      <Name>Yodii.Script</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

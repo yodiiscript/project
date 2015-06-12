@@ -19,6 +19,7 @@ using ICSharpCode.AvalonEdit.Highlighting;
 using ICSharpCode.AvalonEdit.Editing;
 using Yodii_script.IDE.View_Models;
 using System.Xml;
+using GUI;
 
 namespace Yodii_script.IDE
 {
@@ -29,6 +30,7 @@ namespace Yodii_script.IDE
     {
         ScriptContext _scriptCon = new ScriptContext();
         List<int> _breakpoints = new List<int>();
+        Watch _watches;
 
 
         public MainWindow()
@@ -36,7 +38,9 @@ namespace Yodii_script.IDE
             InitializeComponent();
             LoadYodiiSyntax();
             LoadEditorConfig();
+            
             BreakPointsMargin.ItemsSource = _breakpoints;
+            
         }
 
 
@@ -92,6 +96,12 @@ namespace Yodii_script.IDE
                 BreakPointsMargin.ScrollIntoView( _breakpoints[_breakpoints.Count - 1] );
             }
             
+        }
+
+        private void Debug_Click( object sender, RoutedEventArgs e )
+        {
+            _watches = new Watch(this);
+            StackTest.Children.Add( _watches );
         }
 
     }
