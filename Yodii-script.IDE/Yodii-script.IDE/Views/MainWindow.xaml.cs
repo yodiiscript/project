@@ -29,37 +29,17 @@ namespace Yodii_script.IDE
     {
         ScriptContext _scriptCon = new ScriptContext();
         List<int> _breakpoints = new List<int>();
-        DispatcherTimer _timer = new System.Windows.Threading.DispatcherTimer();
 
 
         public MainWindow()
         {
             InitializeComponent();
-            LoadIDEConfig();
-            this.ScriptCol.ItemsSource = _scriptCon.ScriptList;
             LoadYodiiSyntax();
             LoadEditorConfig();
             BreakPointsMargin.ItemsSource = _breakpoints;
         }
 
-        /// <summary>
-        /// Synchronizes the number of lines and breakpoints
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void SyncMarginWithLines( object sender, EventArgs e )
-        {
-            List<int> newBreakPoints = new List<int>();
-            int lines = ScriptEditor.LineCount;
-            for( int i = 0; i < lines; i += 1 )
-            {
-                newBreakPoints.Add( 0 );
-            }
-            _breakpoints = newBreakPoints;
-            BreakPointsMargin.ItemsSource = _breakpoints;
-            BreakPointsMargin.ScrollIntoView( _breakpoints[_breakpoints.Count - 1] );
 
-        }
 
         public void test_datagrid(Object sender, DataGridCellEditEndingEventArgs e)
         {
@@ -68,41 +48,6 @@ namespace Yodii_script.IDE
             _breakpoints[idx] = idx;
         }
 
-
-
-        private void LoadIDEConfig()
-        {
-            Background = new SolidColorBrush( Colors.LightGray );
-            ScriptCol.Background = new SolidColorBrush( Colors.Black );
-            ScriptCol.Foreground = new SolidColorBrush( Colors.White );
-            _scriptCon.Load();
-        }
-
-        private void button_addScript_Click( object sender, RoutedEventArgs e )
-        {
-            if( !String.IsNullOrEmpty( ScriptEditor.Text ) && !String.IsNullOrEmpty( entry_ScriptDesc.Text ) && !String.IsNullOrEmpty(entry_ScriptName.Text))
-            {
-                Script script = _scriptCon.CreateScript( entry_ScriptName.Text, "ys", entry_ScriptDesc.Text, ScriptEditor.Text );
-                if(!_scriptCon.Exists(entry_ScriptName.Text))
-                {
-                    _scriptCon.AddScript( script );
-
-                
-                }
-                else
-                {
-                    MessageBoxResult overwrite = MessageBox.Show( "A script with this name exists \n want to overwrite ?", "Script found", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No );
-                    if (overwrite == MessageBoxResult.Yes ) 
-                    {
-                        _scriptCon.Update( script.Name, script );
-                    }
-                }
-            }
-            else
-            {
-                MessageBoxResult emptyField = MessageBox.Show( "At least one of the fields is empty" );
-            }
-        }
 
         private void LoadYodiiSyntax()
         {
@@ -124,38 +69,30 @@ namespace Yodii_script.IDE
             this.ScriptEditor.Foreground = new SolidColorBrush( Colors.White );
             BreakPointsMargin.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
             BreakPointsMargin.Background = new SolidColorBrush( Colors.Black );
-            BreakPointsMargin.Height = BreakPointsMargin.RowHeight*36;
+            BreakPointsMargin.Height = BreakPointsMargin.RowHeight*29;
         }
 
-        private void button_deleteScript_Click( object sender, RoutedEventArgs e )
+        /// <summary>
+        /// Synchronizes the number of lines and breakpoints
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SyncMarginWithLines( object sender, EventArgs e )
         {
-            if( ScriptCol.SelectedItem != null)
+            if (!String.IsNullOrEmpty(ScriptEditor.Text) )
             {
-                int idx = ScriptCol.SelectedIndex;
-                _scriptCon.Remove( _scriptCon.ScriptList[idx].Name );
+                List<int> newBreakPoints = new List<int>();
+                int lines = ScriptEditor.Document.LineCount;
+                for( int i = 0; i < lines; i += 1 )
+                {
+                    newBreakPoints.Add( 0 );
+                }
+               _breakpoints = newBreakPoints;
+                BreakPointsMargin.ItemsSource = _breakpoints;
+                BreakPointsMargin.ScrollIntoView( _breakpoints[_breakpoints.Count - 1] );
             }
+            
         }
-        
-
-        private void button_newScript_Click( object sender, RoutedEventArgs e )
-        {
-            ScriptEditor.Visibility = Visibility.Visible;
-            ScriptEditor.Text = string.Empty;
-        }
-
-        private void button_editScript_Click( object sender, RoutedEventArgs e )
-        {
-            if( ScriptCol.SelectedItem != null )
-            {
-                ScriptEditor.Visibility = Visibility.Visible;
-                ScriptEditor.Text = _scriptCon.ScriptList[this.ScriptCol.SelectedIndex].SourceCode;
-                _scriptCon.CurrentScript = _scriptCon.ScriptList[this.ScriptCol.SelectedIndex];
-                _scriptCon.ScriptList[this.ScriptCol.SelectedIndex].IsBeingEdited = true;
-                
-            }
-        }
-
-
 
     }
 }
