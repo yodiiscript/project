@@ -3,30 +3,34 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Collections="clr-namespace:System.Collections;assembly=mscorlib"
         xmlns:local="clr-namespace:Yodii_script.IDE.View_Models"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="Yodii_script.IDE.MainWindow"
-        Title="MainWindow" Height="720" Width="600">
+        Title="MainWindow" Height="720" Width="720" MinWidth="720" MinHeight="720" MaxWidth="720" MaxHeight="720">
 
     <Window.DataContext>
         <local:MainWindowVM/>
     </Window.DataContext>
 
-    <Grid Background="LightGray">
+    <Grid Background="LightGray" MinWidth="592" MinHeight="689">
         <ListBox x:Name="ScriptCol" HorizontalAlignment="Left" Margin="3,50,3,15" Width="175" 
 			ItemsSource="{Binding Source}" DisplayMemberPath="FullName" Background="Black" Foreground="White"/>
 
-        <Button x:Name="button_addScript" Content="Save Script" Command="{Binding AddScriptCommand}" CommandParameter="{Binding Text, ElementName=entry_ScriptName}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="button_addScript_Click" Margin="3,0,0,0"/>
-        <TextBox x:Name="entry_ScriptName" HorizontalAlignment="Left" Height="23" Margin="3,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="button_editScript" Content="Edit Script" HorizontalAlignment="Left" Margin="78,0,0,0" VerticalAlignment="Top" Width="75" Click="button_editScript_Click"/>
-        <Button x:Name="button_newScript" Content="New Script" HorizontalAlignment="Left" Margin="153,0,0,0" VerticalAlignment="Top" Width="70" RenderTransformOrigin="0.485,-0.347" Click="button_newScript_Click"/>
-        <Button x:Name="button_deleteScript" Content="Remove script" Command="{Binding DeleteButtonCommand}" CommandParameter="{Binding SelectedItem, ElementName=ScriptCol}" HorizontalAlignment="Left" Margin="223,0,0,0" VerticalAlignment="Top" Width="93" Click="button_deleteScript_Click"/>
-        <avalonEdit:TextEditor
-			xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
-			x:Name="ScriptEditor"
-			FontFamily="Consolas"
-			SyntaxHighlighting="C#"
-			FontSize="11pt" Margin="223,52,179,50" Visibility="Visible" TextChanged="SyncMarginWithLines"/>
-        <TextBox x:Name="entry_ScriptDesc" HorizontalAlignment="Left" Height="23" Margin="128,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <DataGrid x:Name="BreakPointsMargin" AutoGenerateColumns="False" MinWidth="25" MinHeight="20" Margin="183,52,0,0" MaxWidth="65" ScrollViewer.CanContentScroll="False" 
+        <Label Content="Name:" HorizontalAlignment="Left" Margin="200,53,0,0" VerticalAlignment="Top"/>
+        <Label Content="Description:" HorizontalAlignment="Left" Margin="200,100,0,0" VerticalAlignment="Top"/>
+        <Label Content="Source Code:" HorizontalAlignment="Left" Margin="200,146,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="button_addScript" Content="Save" Command="{Binding AddScriptCommand}"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="359,654,0,0" />
+        <Button x:Name="button_editScript" Content="Edit" Command="{Binding EditScriptCommand}" CommandParameter="{Binding ElementName=ScriptCol, Path=SelectedItem}" HorizontalAlignment="Left" Margin="5,14,0,0" VerticalAlignment="Top" Width="79"/>
+        <Button x:Name="button_clearScript" Content="Clear" Command="{Binding ClearScriptCommand}" HorizontalAlignment="Left" Margin="462,654,0,0" VerticalAlignment="Top" Width="70" RenderTransformOrigin="0.485,-0.347"/>
+        <Button x:Name="button_deleteScript" Content="Delete" Command="{Binding DeleteScriptCommand}" CommandParameter="{Binding ElementName=ScriptCol, Path=SelectedIndex}" HorizontalAlignment="Left" Margin="99,14,0,0" VerticalAlignment="Top" Width="79"/>
+        <TextBox x:Name="entry_ScriptName" Text="{Binding Path=NameSource, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="278,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="415"/>
+        <TextBox x:Name="entry_ScriptName_Copy" Text="{Binding Path=DescriptionSource, Mode=TwoWay}" HorizontalAlignment="Left" Height="38" Margin="278,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="415"/>
+
+        <avalonEdit:TextEditor xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+                               Name="ScriptEditor"
+                               Document="{Binding Path=Document}"
+                               FontFamily="Consolas"
+                               SyntaxHighlighting="C#"
+                               FontSize="11pt" Margin="200,177,10,49" Visibility="Visible"/>
+
+
                    CanUserAddRows="False" UseLayoutRounding="False" HeadersVisibility="None" HorizontalScrollBarVisibility="Disabled" SelectionUnit="Cell"
                    CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" Width="38" Height="171" VerticalAlignment="Top" VerticalContentAlignment="Stretch" 
                    VerticalScrollBarVisibility="Visible" SelectionMode="Single" RowHeight="17.1" HorizontalAlignment="Left" MaxColumnWidth="20" RowBackground="#00000000" 

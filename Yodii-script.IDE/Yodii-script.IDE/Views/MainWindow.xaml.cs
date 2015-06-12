@@ -27,21 +27,16 @@ namespace Yodii_script.IDE
     /// </summary>
     public partial class MainWindow : Window
     {
-        ScriptContext _scriptCon = new ScriptContext();
         List<int> _breakpoints = new List<int>();
         DispatcherTimer _timer = new System.Windows.Threading.DispatcherTimer();
-
 
         public MainWindow()
         {
             InitializeComponent();
-            LoadIDEConfig();
-            this.ScriptCol.ItemsSource = _scriptCon.ScriptList;
             LoadYodiiSyntax();
             LoadEditorConfig();
             BreakPointsMargin.ItemsSource = _breakpoints;
         }
-
         /// <summary>
         /// Synchronizes the number of lines and breakpoints
         /// </summary>
@@ -70,40 +65,18 @@ namespace Yodii_script.IDE
 
 
 
-        private void LoadIDEConfig()
-        {
             Background = new SolidColorBrush( Colors.LightGray );
             ScriptCol.Background = new SolidColorBrush( Colors.Black );
             ScriptCol.Foreground = new SolidColorBrush( Colors.White );
             _scriptCon.Load();
-        }
-
-        private void button_addScript_Click( object sender, RoutedEventArgs e )
-        {
             if( !String.IsNullOrEmpty( ScriptEditor.Text ) && !String.IsNullOrEmpty( entry_ScriptDesc.Text ) && !String.IsNullOrEmpty(entry_ScriptName.Text))
-            {
                 Script script = _scriptCon.CreateScript( entry_ScriptName.Text, "ys", entry_ScriptDesc.Text, ScriptEditor.Text );
-                if(!_scriptCon.Exists(entry_ScriptName.Text))
-                {
-                    _scriptCon.AddScript( script );
 
                 
-                }
-                else
-                {
-                    MessageBoxResult overwrite = MessageBox.Show( "A script with this name exists \n want to overwrite ?", "Script found", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No );
-                    if (overwrite == MessageBoxResult.Yes ) 
-                    {
-                        _scriptCon.Update( script.Name, script );
-                    }
-                }
-            }
             else
             {
                 MessageBoxResult emptyField = MessageBox.Show( "At least one of the fields is empty" );
             }
-        }
-
         private void LoadYodiiSyntax()
         {
             // Load a different syntax config file
@@ -125,34 +98,11 @@ namespace Yodii_script.IDE
             BreakPointsMargin.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
             BreakPointsMargin.Background = new SolidColorBrush( Colors.Black );
             BreakPointsMargin.Height = BreakPointsMargin.RowHeight*36;
-        }
-
-        private void button_deleteScript_Click( object sender, RoutedEventArgs e )
-        {
-            if( ScriptCol.SelectedItem != null)
-            {
-                int idx = ScriptCol.SelectedIndex;
-                _scriptCon.Remove( _scriptCon.ScriptList[idx].Name );
-            }
-        }
         
 
-        private void button_newScript_Click( object sender, RoutedEventArgs e )
-        {
-            ScriptEditor.Visibility = Visibility.Visible;
-            ScriptEditor.Text = string.Empty;
-        }
-
-        private void button_editScript_Click( object sender, RoutedEventArgs e )
-        {
-            if( ScriptCol.SelectedItem != null )
-            {
-                ScriptEditor.Visibility = Visibility.Visible;
-                ScriptEditor.Text = _scriptCon.ScriptList[this.ScriptCol.SelectedIndex].SourceCode;
                 _scriptCon.CurrentScript = _scriptCon.ScriptList[this.ScriptCol.SelectedIndex];
                 _scriptCon.ScriptList[this.ScriptCol.SelectedIndex].IsBeingEdited = true;
                 
-            }
         }
 
 

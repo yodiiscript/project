@@ -46,8 +46,8 @@ namespace Yodii_script.IDE.View_Models
         /// <param name="name">the name of the script to replace</param>
         /// <param name="script">the new script</param>
         internal static void Update( string name, Script script )
-        {         
-            XDocument doc = XDocument.Load( _path );
+        {
+            XDocument doc = FindOrCreateFile();
             XElement s = new XElement( "Script" );
             s.Add( new XAttribute( "name", script.Name ) );
             s.Add( new XElement( "language", script.Language ) );
