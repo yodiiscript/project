@@ -30,10 +30,14 @@ namespace GUI
             bkv.VisitExpr( exp );
             _engine.Breakpoints.AddBreakpoint( bkv.BreakableExprs[1] );
             _engine.Breakpoints.AddBreakpoint( bkv.BreakableExprs[4] );
-            _res = _engine.Execute( exp );
+            _engine.Breakpoints.AddBreakpoint(bkv.BreakableExprs[6]);
+            _res = _engine.Execute(exp);
+
              if( !_res.CanContinue )
              {
                  _res.Dispose();
+                 ((Panel)this.Parent).Children.Remove(this); 
+                
              }
 
         
@@ -119,15 +123,24 @@ namespace GUI
         if( !_res.CanContinue )
         {
             _res.Dispose();
+            ((Panel)this.Parent).Children.Remove(this); 
         }
         else
         {
             _res.Continue();
+
+            foreach (VarData v in _varsCollection)
+            {
+                v.Refresh(_engine);
+            }  
         }
-        foreach( VarData v in _varsCollection )
-        {
-            v.Refresh( _engine );
-        }        
+              
+    }
+
+    private void StopDebbuging_Click(object sender, RoutedEventArgs e)
+    {
+        _res.Dispose();
+        ((Panel)this.Parent).Children.Remove(this); 
     }
 
 }  
@@ -161,9 +174,11 @@ namespace GUI
     public void Refresh(ScriptEngineDebugger engine)
     {
         var Test = engine.ScopeManager.FindByName( this.VarName );
-
-        this.VarValue = EvalTokenizerDebugger.Escape(Test.Object.ToString());
-        this.VarType = Test.Object.Type.ToString();
+        if (Test != null)
+        {
+            this.VarValue = EvalTokenizerDebugger.Escape(Test.Object.ToString());
+            this.VarType = Test.Object.Type.ToString();
+        }
     }
 
     #region INotifyPropertyChanged Members

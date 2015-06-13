@@ -6,4 +6,15 @@
     <sourceCode>let a;
 </sourceCode>
   </Script>
+  <Script name="test">
+    <language>ys</language>
+    <description>script that test debbuger</description>
+    <sourceCode>let a, b, c;
+a = true;
+a = 2;
+b = "test";
+c = a + b;
+let d = "simple string";
+d = 3;</sourceCode>
+  </Script>
 </Scripts>
