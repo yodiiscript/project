@@ -1,20 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Scripts>
-  <Script name="tst">
-    <language>ys</language>
-    <description>zob</description>
-    <sourceCode>let a;
-</sourceCode>
-  </Script>
   <Script name="test">
     <language>ys</language>
     <description>script that test debbuger</description>
     <sourceCode>let a, b, c;
+let z;
 a = true;
 a = 2;
 b = "test";
 c = a + b;
 let d = "simple string";
-let z = 2;</sourceCode>
+z = b+d;
+</sourceCode>
+  </Script>
+  <Script name="conditions">
+    <language>ys</language>
+    <description>testing conditions</description>
+    <sourceCode>let a = 5;
+let b = 2;
+let c;
+let d = "coucou";
+let e = "zob";
+if (a &gt; b) {
+	c = a+b;
+}
+d = "dfgdgdg";
+d = "dfgdfg2é";
+d = 2; </sourceCode>
   </Script>
 </Scripts>
