@@ -100,8 +100,15 @@ namespace Yodii_script.IDE
 
         private void Debug_Click( object sender, RoutedEventArgs e )
         {
-            _watches = new Watch(this);
-            StackTest.Children.Add( _watches );
+            if( StackTest.Children.Count == 0 )
+            {
+                _watches = new Watch( this );
+                StackTest.Children.Add( _watches );
+            }
+            else
+            {
+                MessageBoxResult popup = MessageBox.Show("Debug already running");
+            }
         }
 
     }

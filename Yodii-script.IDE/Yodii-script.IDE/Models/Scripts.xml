@@ -15,6 +15,6 @@ a = 2;
 b = "test";
 c = a + b;
 let d = "simple string";
-d = 3;</sourceCode>
+let z = 2;</sourceCode>
   </Script>
 </Scripts>
