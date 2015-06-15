@@ -19,6 +19,7 @@ namespace Yodii_script.IDE.View_Models
         private ICommand deleteScriptCommand;
         private ICommand editScriptCommand;
         private ICommand clearScriptCommand;
+        private ICommand debugScriptCommand;
         private string _nameSource;
         private string _descriptionSource;
         private string _codeSource;
@@ -106,6 +107,10 @@ namespace Yodii_script.IDE.View_Models
         {
             get { return clearScriptCommand; }
         }
+        public ICommand DebugScriptCommand
+        {
+            get { return debugScriptCommand; }
+        }
         #endregion
 
         #region PropertyChanged
@@ -127,6 +132,7 @@ namespace Yodii_script.IDE.View_Models
             editScriptCommand = new RelayCommand( EditScript, CanExecuteEditScript );
             deleteScriptCommand = new RelayCommand( DeleteScript, CanExecuteDeleteScript );
             clearScriptCommand = new RelayCommand( ClearScript, CanExecuteClearScript );
+            debugScriptCommand = new RelayCommand( DebugScript, CanExecuteDebugScript );
             _document = new TextDocument();
         }
         #endregion
@@ -230,6 +236,20 @@ namespace Yodii_script.IDE.View_Models
             }
         }
         #endregion
+        private void DebugScript( object obj )
+        {
+        }
+        private bool CanExecuteDebugScript( object obj )
+        {
+            if( !String.IsNullOrEmpty( _document.Text ) )
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         #endregion
     }
 }
