@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3FBBCDF0-824E-45BD-85B6-930F73C64128}</ProjectGuid>
+    <ProjectGuid>{04FE4BA4-34A8-4987-A3B5-E14B963F6BE7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Yodii_script.IDE.Tests</RootNamespace>
-    <AssemblyName>Yodii-script.IDE.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>Yodii.Script.Debugger.Tests</RootNamespace>
+    <AssemblyName>Yodii.Script.Debugger.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-	<StartAction>Program</StartAction>
-    <StartProgram>$(SolutionDir)\packages\NUnit.Runners.2.6.4\tools\nunit.exe</StartProgram>
-    <StartArguments>Yodii-script.IDE.dll</StartArguments>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,14 +45,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="BasicDebuggerSupport.cs" />
+    <Compile Include="DynamicalVariableEdition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Yodii-script.IDE\Yodii-script.IDE.csproj">
-      <Project>{aa28fdbe-c0c2-4207-83a1-4fc98ff34c4e}</Project>
-      <Name>Yodii-script.IDE</Name>
+    <ProjectReference Include="..\..\Yodii.Script.Debugger\Yodii.Script.Debugger.csproj">
+      <Project>{576274a5-5fbf-4803-91db-96effcf4159a}</Project>
+      <Name>Yodii.Script.Debugger</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Yodii.Script\Yodii.Script.csproj">
+      <Project>{388870e4-cf4e-45b5-bbec-ec6fad2e7490}</Project>
+      <Name>Yodii.Script</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

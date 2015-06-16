@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Scripts>
+  <Script name="coucou">
+    <language>ys</language>
+    <description>script1</description>
+    <sourceCode>let a;</sourceCode>
+  </Script>
+  <Script name="coucou">
+    <language>ys</language>
+    <description>script1</description>
+    <sourceCode>let a;</sourceCode>
+  </Script>
+</Scripts>

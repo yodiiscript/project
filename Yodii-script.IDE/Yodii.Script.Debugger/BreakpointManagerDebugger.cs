@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Yodii_script.IDE.Tests
+namespace Yodii.Script.Debugger
 {
-    public class Class1
+    class BreakPointManagerDebugger : BreakpointManager
     {
     }
 }
