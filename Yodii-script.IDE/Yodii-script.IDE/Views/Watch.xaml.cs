@@ -28,9 +28,8 @@ namespace GUI
 
             BreakableVisitor bkv = new BreakableVisitor();
             bkv.VisitExpr( exp );
-            _engine.Breakpoints.AddBreakpoint( bkv.BreakableExprs[1] );
-            _engine.Breakpoints.AddBreakpoint( bkv.BreakableExprs[4] );
-            _engine.Breakpoints.AddBreakpoint(bkv.BreakableExprs[6]);
+
+            _engine.Breakpoints.BreakAlways = true;
             _res = _engine.Execute(exp);
 
              if( !_res.CanContinue )
