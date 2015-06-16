@@ -22,7 +22,7 @@ namespace Yodii.Script.Debugger.Tests
 
             BreakableVisitor bkv = new BreakableVisitor();
             bkv.VisitExpr( exp );
-            Assert.That( bkv.BreakableExprs.Select(v=>v.Count).Sum(), Is.EqualTo( count ) );
+            Assert.That( bkv.BreakableExprs.Select(v=>(v!=null)?v.Count:0).Sum(), Is.EqualTo( count ) );
         }
 
         [Test]

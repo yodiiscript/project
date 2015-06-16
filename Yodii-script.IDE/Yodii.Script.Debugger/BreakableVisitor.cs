@@ -23,11 +23,9 @@ namespace Yodii.Script.Debugger
             {
                 _breakableExprs.Add( null );
             }
-            if( _breakableExprs[e.Location.Line] == null )
+            if( _breakableExprs[e.Location.Line] == null && e.IsBreakable )
             {
-                _breakableExprs[e.Location.Line] = new List<Expr>();
-                
-                
+                _breakableExprs[e.Location.Line] = new List<Expr>();            
             }
             if( e.IsBreakable )
             {

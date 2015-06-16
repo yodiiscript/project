@@ -20,6 +20,8 @@ using ICSharpCode.AvalonEdit.Editing;
 using Yodii_script.IDE.View_Models;
 using System.Xml;
 using GUI;
+using Yodii.Script;
+using Yodii.Script.Debugger;
 
 namespace Yodii_script.IDE
 {
@@ -86,8 +88,10 @@ namespace Yodii_script.IDE
             if (!String.IsNullOrEmpty(ScriptEditor.Text) )
             {
                 List<int> newBreakPoints = new List<int>();
-                int lines = ScriptEditor.Document.LineCount;
-                for( int i = 0; i < lines; i += 1 )
+                Expr exp = ExprAnalyser.AnalyseString( ScriptEditor.Text );
+                BreakableVisitor bkv = new BreakableVisitor();
+                bkv.VisitExpr( exp );
+                foreach( var item in bkv.BreakableExprs )
                 {
                     newBreakPoints.Add( 0 );
                 }
