@@ -25,8 +25,8 @@ namespace Yodii.Script.Debugger.Tests
 
             BreakableVisitor bkv = new BreakableVisitor();
             bkv.VisitExpr( exp );
-            engine.Breakpoints.AddBreakpoint( bkv.BreakableExprs[3] );
-            engine.Breakpoints.AddBreakpoint( bkv.BreakableExprs[4] );
+            engine.Breakpoints.AddBreakpoint( bkv.BreakableExprs[3][0] );
+            engine.Breakpoints.AddBreakpoint( bkv.BreakableExprs[4][0] );
             
             using( var r2 = engine.Execute( exp ) )
             {

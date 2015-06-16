@@ -22,7 +22,7 @@ namespace Yodii.Script.Debugger.Tests
 
             BreakableVisitor bkv = new BreakableVisitor();
             bkv.VisitExpr( exp );
-            Assert.That( bkv.BreakableExprs.Count, Is.EqualTo( count ) );
+            Assert.That( bkv.BreakableExprs.Select(v=>v.Count).Sum(), Is.EqualTo( count ) );
         }
 
         [Test]
@@ -39,7 +39,7 @@ namespace Yodii.Script.Debugger.Tests
             BreakableVisitor bkv = new BreakableVisitor();
             bkv.VisitExpr( exp );
             Assert.That( bkv.BreakableExprs.Count, Is.EqualTo( 4 ) );
-            engine.Breakpoints.AddBreakpoint( bkv.BreakableExprs[3] );
+            engine.Breakpoints.AddBreakpoint( bkv.BreakableExprs[3][1] );
 
             using( var r2 = engine.Execute( exp ) )
             {
@@ -69,7 +69,7 @@ namespace Yodii.Script.Debugger.Tests
             BreakableVisitor bkv = new BreakableVisitor();
             bkv.VisitExpr( exp );
             Assert.That( bkv.BreakableExprs.Count, Is.EqualTo( 4 ) );
-            engine.Breakpoints.AddBreakpoint( bkv.BreakableExprs[3] );
+            engine.Breakpoints.AddBreakpoint( bkv.BreakableExprs[3][1] );
 
             using( var r2 = engine.Execute( exp ) )
             {
@@ -97,7 +97,7 @@ namespace Yodii.Script.Debugger.Tests
 
             BreakableVisitor bkv = new BreakableVisitor();
             bkv.VisitExpr( exp );
-            engine.Breakpoints.AddBreakpoint( bkv.BreakableExprs[5] );
+            engine.Breakpoints.AddBreakpoint( bkv.BreakableExprs[5][0] );
 
             using( var r2 = engine.Execute( exp ) )
             {
@@ -105,8 +105,8 @@ namespace Yodii.Script.Debugger.Tests
                 Assert.That( engine.ScopeManager.FindByName( "b" ).Object.ToDouble(), Is.EqualTo( 2.0 ) );
                 r2.Continue();
             }
-            engine.Breakpoints.RemoveBreakpoint( bkv.BreakableExprs[5] );
-            engine.Breakpoints.AddBreakpoint( bkv.BreakableExprs[7] );
+            engine.Breakpoints.RemoveBreakpoint( bkv.BreakableExprs[5][0] );
+            engine.Breakpoints.AddBreakpoint( bkv.BreakableExprs[8][0] );
             using( var r2 = engine.Execute( exp ) )
             {
                 Assert.That( engine.ScopeManager.FindByName( "a" ).Object.ToDouble(), Is.EqualTo( 5.0 ) );

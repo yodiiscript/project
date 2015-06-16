@@ -11,7 +11,7 @@ namespace Yodii.Script.Debugger
     /// </summary>
     public class BreakableVisitor : ExprVisitor
     {
-        readonly List<Expr> _breakableExprs = new List<Expr>();
+        readonly List<List<Expr>> _breakableExprs = new List<List<Expr>>();
         /// <summary>
         /// Reads the full AST, to find all breakable atomic <see cref="Expr"/>
         /// </summary>
@@ -19,11 +19,23 @@ namespace Yodii.Script.Debugger
         /// <returns></returns>
         public override Expr VisitExpr( Expr e )
         {
-            Console.WriteLine( e.ToString() );
-            if( e.IsBreakable ) _breakableExprs.Add( e );
+            while( _breakableExprs.Count <= e.Location.Line )
+            {
+                _breakableExprs.Add( null );
+            }
+            if( _breakableExprs[e.Location.Line] == null )
+            {
+                _breakableExprs[e.Location.Line] = new List<Expr>();
+                
+                
+            }
+            if( e.IsBreakable )
+            {
+                _breakableExprs[e.Location.Line].Add( e );
+            }
             return base.VisitExpr( e );
         }
-        public IReadOnlyList<Expr> BreakableExprs
+        public List<List<Expr>> BreakableExprs
         {
             get { return _breakableExprs; }
         }
