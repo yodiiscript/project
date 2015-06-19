@@ -19,6 +19,7 @@ using ICSharpCode.AvalonEdit.Highlighting;
 using ICSharpCode.AvalonEdit.Editing;
 using Yodii_script.IDE.View_Models;
 using System.Xml;
+using Yodii_script.IDE.Views;
 using GUI;
 
 namespace Yodii_script.IDE
@@ -31,6 +32,7 @@ namespace Yodii_script.IDE
         ScriptContext _scriptCon = new ScriptContext();
         List<int> _breakpoints = new List<int>();
         Watch _watches;
+        Repl _console;
 
 
         public MainWindow()
@@ -42,7 +44,6 @@ namespace Yodii_script.IDE
             BreakPointsMargin.ItemsSource = _breakpoints;
             
         }
-
 
 
         public void test_datagrid(Object sender, DataGridCellEditEndingEventArgs e)
@@ -108,6 +109,20 @@ namespace Yodii_script.IDE
             else
             {
                 MessageBoxResult popup = MessageBox.Show("Debug already running");
+            }
+        }
+
+        private void StartConsole_Click( object sender, RoutedEventArgs e )
+        {
+            if( _console == null )
+            {
+                _console = new Repl( this );
+                StackTest.Children.Add( _console );
+            }
+            else if( _console != null )
+            {
+                ((Panel)_console.Parent).Children.Remove( _console );
+                _console = null;
             }
         }
 

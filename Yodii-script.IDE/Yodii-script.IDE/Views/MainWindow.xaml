@@ -42,7 +42,8 @@
             </DataGrid.Columns>
 
         </DataGrid>
-        <StackPanel HorizontalAlignment="Right" Height="309" Margin="722,177,50,0" VerticalAlignment="Top" Width="384" Name="StackTest"/>
+        <StackPanel HorizontalAlignment="Right" Height="420" Margin="0,177,50,0" VerticalAlignment="Top" Width="384" Name="StackTest"/>
+        <Button x:Name="StartConsole" Content="Console" HorizontalAlignment="Left" Margin="989,17,0,0" VerticalAlignment="Top" Width="75" ToolTip="Starts interactive console" Click="StartConsole_Click"/>
     </Grid>
 
 </Window>

@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="Yodii_script.IDE.Views.Repl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="450">
+    <Grid Margin="0,10,0,-50">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="217*"/>
+            <ColumnDefinition Width="8*"/>
+        </Grid.ColumnDefinitions>
+        <avalonEdit:TextEditor
+    xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+    Name="ConsoleInput"
+    FontFamily="Consolas"
+    SyntaxHighlighting="JavaScript"
+    FontSize="10pt" Margin="0,10,21,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" ScrollViewer.CanContentScroll="True" MaxHeight="350" MaxWidth="450" Height="150" BorderThickness="0,0,0,2"/>
+        <ListBox x:Name="ConsoleOutput" Height="150" Margin="0,165,21,0" VerticalAlignment="Top" Padding="0" MinHeight="30" MaxHeight="350" MaxWidth="450" ScrollViewer.VerticalScrollBarVisibility="Visible" BorderThickness="0,2,0,0"/>
+
+    </Grid>
+</UserControl>

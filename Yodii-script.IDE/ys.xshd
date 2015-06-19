@@ -14,8 +14,6 @@
 	<RuleSet ignoreCase="false">
 		<Keywords color="YodiiScriptKeyWords">
 			<Word>use</Word>
-			<Word>zob</Word>
-			<Word>caca</Word>
 			<Word>break</Word>
 			<Word>continue</Word>
 			<Word>delete</Word>
