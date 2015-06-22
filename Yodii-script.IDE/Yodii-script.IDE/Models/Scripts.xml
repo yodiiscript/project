@@ -20,7 +20,7 @@ z = b+d;
 let b = 2;
 let c;
 let d = "coucou";
-let e = "zob";
+let e = "monde";
 if (a &gt; b) {
 	c = a+b;
 }

@@ -99,20 +99,21 @@ namespace Yodii_script.IDE
             
         }
 
-        private void Debug_Click( object sender, RoutedEventArgs e )
+        internal void Debug_Click( object sender, RoutedEventArgs e )
         {
-            if( StackTest.Children.Count == 0 )
+            if( _watches == null )
             {
                 _watches = new Watch( this );
                 StackTest.Children.Add( _watches );
             }
-            else
+            else if( _watches != null)
             {
-                MessageBoxResult popup = MessageBox.Show("Debug already running");
+                ((Panel)_watches.Parent).Children.Remove( _watches );
+                _watches = null;
             }
         }
 
-        private void StartConsole_Click( object sender, RoutedEventArgs e )
+        internal void StartConsole_Click( object sender, RoutedEventArgs e )
         {
             if( _console == null )
             {

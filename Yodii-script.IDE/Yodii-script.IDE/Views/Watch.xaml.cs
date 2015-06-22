@@ -19,9 +19,10 @@ namespace GUI
         ObservableCollection<VarData> _varsCollection = new ObservableCollection<VarData>();
         ScriptEngineDebugger _engine = new ScriptEngineDebugger( new GlobalContext() );
         ScriptEngine.Result _res;
+        MainWindow _root;
         public Watch( MainWindow root)
         {
-
+            _root = root;
             string script = root.ScriptEditor.Text;
 
             Expr exp = ExprAnalyser.AnalyseString( script );
@@ -131,15 +132,14 @@ namespace GUI
             foreach (VarData v in _varsCollection)
             {
                 v.Refresh(_engine);
-            }  
+            }
         }
               
     }
 
     private void StopDebbuging_Click(object sender, RoutedEventArgs e)
     {
-        _res.Dispose();
-        ((Panel)this.Parent).Children.Remove(this); 
+        _root.Debug_Click( this, new RoutedEventArgs() );
     }
 
 }  

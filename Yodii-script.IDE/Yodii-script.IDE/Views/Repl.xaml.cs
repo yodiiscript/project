@@ -27,10 +27,10 @@ namespace Yodii_script.IDE.Views
     /// </summary>
     public partial class Repl : UserControl
     {
-        List<object> _output;
         ScriptEngineDebugger _engine = new ScriptEngineDebugger( new GlobalContext() );
         ScriptEngine.Result _res;
         MainWindow _root;
+
         public Repl( MainWindow root )
         {
             this.Height = 500;
@@ -38,18 +38,22 @@ namespace Yodii_script.IDE.Views
             InitializeComponent();
             ConsoleInput.LineNumbersForeground = new SolidColorBrush( Colors.Yellow );
             ConsoleInput.WordWrap = true;
-            ConsoleInput.Background = new SolidColorBrush( Colors.Black );
-            ConsoleInput.Foreground = new SolidColorBrush( Colors.White );
-            ConsoleOutput.Background = new SolidColorBrush( Colors.Black );
-            //ConsoleInput.KeyUp += new KeyEventHandler( ExecuteOutput );
+            ConsoleOutput.MinHeight = 110;
+            ConsoleOutput.MaxHeight = 160;
+            ConsoleOutput.SelectionMode = SelectionMode.Single;
             ConsoleOutput.Focusable = false;
+            //ConsoleOutput.IsEnabled = false;
+            ConsoleOutput.Background = new SolidColorBrush( Colors.Black );
             LoadYodiiSyntax();
         }
-
+        /// <summary>
+        /// Retrieving code and executing it
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ExecuteConsole_Click(object sender, RoutedEventArgs e)
         {
             string codeToEx;
-           
             if( ConsoleInput.SelectedText == "" )
             {
                 codeToEx = ConsoleInput.Text;
@@ -60,9 +64,10 @@ namespace Yodii_script.IDE.Views
             }
             Expr exp = ExprAnalyser.AnalyseString( codeToEx );
             _res = _engine.Execute( exp );
-            _output = new List<object>();
-            _output.Add( _res.CurrentResult );
             ConsoleOutput.Items.Insert(ConsoleOutput.Items.Count, _res.CurrentResult);
+            Border border = (Border)VisualTreeHelper.GetChild( ConsoleOutput, 0 );
+            ScrollViewer scrollViewer = (ScrollViewer)VisualTreeHelper.GetChild( border, 0 );
+            scrollViewer.ScrollToBottom();
             _res.Dispose();
 
         }
@@ -86,6 +91,25 @@ namespace Yodii_script.IDE.Views
                         ConsoleInput.SyntaxHighlighting = HighlightingLoader.Load( reader, HighlightingManager.Instance );
                     }      
                 }
+            }
+
+            void ConsoleClose_Click( object sender, RoutedEventArgs e )
+            {
+                _root.StartConsole_Click( this, new RoutedEventArgs());
+            }
+
+            void SpecialKeyHandler( object sender, KeyEventArgs e )
+            {
+                if( (Keyboard.Modifiers == ModifierKeys.Control) && (e.Key == Key.Enter) )
+                {
+                    ExecuteConsole_Click( this, new RoutedEventArgs() );
+                }
+            }
+
+            private void DisableSelection( object sender, SelectionChangedEventArgs e )
+            {
+                ConsoleOutput.Focusable = false;
+                ConsoleOutput.SelectedIndex = 0;
             }
 
             
