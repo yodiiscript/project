@@ -13,19 +13,4 @@ let d = "simple string";
 z = b+d;
 </sourceCode>
   </Script>
-  <Script name="conditions">
-    <language>ys</language>
-    <description>testing conditions</description>
-    <sourceCode>let a = 5;
-let b = 2;
-let c;
-let d = "coucou";
-let e = "monde";
-if (a &gt; b) {
-	c = a+b;
-}
-d = "dfgdgdg";
-d = "dfgdfg2é";
-d = 2; </sourceCode>
-  </Script>
 </Scripts>

@@ -122,8 +122,7 @@ namespace GUI
         
         if( !_res.CanContinue )
         {
-            _res.Dispose();
-            ((Panel)this.Parent).Children.Remove(this); 
+            _root.Debug_Click( this, new RoutedEventArgs() );
         }
         else
         {
