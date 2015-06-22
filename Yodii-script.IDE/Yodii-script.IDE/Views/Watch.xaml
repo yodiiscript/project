@@ -10,7 +10,7 @@
 
         <TextBox x:Name="addVars" HorizontalAlignment="Left" Height="23" Margin="0,80,0,0" TextWrapping="Wrap" Text="addVars" VerticalAlignment="Top" Width="120" TextAlignment="Center"/>
         <Button x:Name="add" Content="add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="248,81,0,0" Click="add_Click"/>
-        <ListView Name="Watche" Margin="0,103,0,0" ItemsSource="{Binding VarsCollection}" AlternationCount="-1" IsSynchronizedWithCurrentItem="True">
+        <ListView Name="Watche" Margin="0,103,0,0" ItemsSource="{Binding VarsCollection}" AlternationCount="-1" IsSynchronizedWithCurrentItem="True" ScrollViewer.VerticalScrollBarVisibility="Visible" MaxHeight="175" ScrollViewer.HorizontalScrollBarVisibility="Visible">
             <ListView.View>
                 <GridView>
 
