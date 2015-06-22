@@ -33,7 +33,7 @@ namespace Yodii_script.IDE.Views
 
         public Repl( MainWindow root )
         {
-            //this.Height = 500;
+            this.Height = 500;
             _root = root;
             InitializeComponent();
             ConsoleInput.LineNumbersForeground = new SolidColorBrush( Colors.Yellow );

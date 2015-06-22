@@ -4,13 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
-             mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="500">
-    <Grid x:Name="board">
+             mc:Ignorable="d" d:DesignWidth="500" Height="313">
+    <Grid x:Name="board" Height="327" VerticalAlignment="Top">
 
         <TextBox x:Name="addVars" HorizontalAlignment="Left" Height="23" Margin="0,80,0,0" TextWrapping="Wrap" Text="addVars" VerticalAlignment="Top" Width="120" TextAlignment="Center"/>
-        <Button x:Name="add" Content="add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="248,81,0,0" Click="add_Click"/>
-        <ListView Name="Watche" Margin="0,103,0,0" ItemsSource="{Binding VarsCollection}" AlternationCount="-1" IsSynchronizedWithCurrentItem="True" ScrollViewer.VerticalScrollBarVisibility="Visible" MaxHeight="175" ScrollViewer.HorizontalScrollBarVisibility="Visible">
+        <Button x:Name="add" Content="add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="180,81,0,0" Click="add_Click"/>
+        <ListView Name="Watche" Margin="0,108,19,69" ItemsSource="{Binding VarsCollection}" AlternationCount="-1" IsSynchronizedWithCurrentItem="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="150">
             <ListView.View>
                 <GridView>
 
@@ -27,7 +26,7 @@
             </ListView.View>
         </ListView>
 
-        <Button x:Name="clearButton" Content="Clear" HorizontalAlignment="Left" Margin="323,80,0,0" VerticalAlignment="Top" Width="75" Click="clearButton_Click"/>
+        <Button x:Name="clearButton" Content="Clear" HorizontalAlignment="Left" Margin="262,81,0,0" VerticalAlignment="Top" Width="75" Click="clearButton_Click"/>
         <Button x:Name="_continue" Content="Continue" HorizontalAlignment="Left" Margin="0,25,0,0" VerticalAlignment="Top" Width="154" Height="37" Click="_continue_Click"/>
         <Button x:Name="StopDebbuging" Content="Stop" HorizontalAlignment="Left" Margin="248,25,0,0" VerticalAlignment="Top" Width="89" Height="37" Click="StopDebbuging_Click"/>
     </Grid>
