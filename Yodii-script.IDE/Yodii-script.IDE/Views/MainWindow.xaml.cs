@@ -31,7 +31,7 @@ namespace Yodii_script.IDE
     public partial class MainWindow : Window
     {
         ScriptContext _scriptCon = new ScriptContext();
-        List<int> _breakpoints = new List<int>();
+        List<bool> _breakpoints = new List<bool>();
         Watch _watches;
 
 
@@ -44,17 +44,6 @@ namespace Yodii_script.IDE
             BreakPointsMargin.ItemsSource = _breakpoints;
             
         }
-
-
-
-        public void test_datagrid(Object sender, DataGridCellEditEndingEventArgs e)
-        {
-            TextBox t = e.EditingElement as TextBox;
-            int idx = e.Row.GetIndex();
-            _breakpoints[idx] = idx;
-        }
-
-
         private void LoadYodiiSyntax()
         {
             // Load a different syntax config file
@@ -73,9 +62,7 @@ namespace Yodii_script.IDE
             this.ScriptEditor.WordWrap = true;
             this.ScriptEditor.Background = new SolidColorBrush( Colors.Black );
             this.ScriptEditor.Foreground = new SolidColorBrush( Colors.White );
-            BreakPointsMargin.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
             BreakPointsMargin.Background = new SolidColorBrush( Colors.Black );
-            BreakPointsMargin.Height = BreakPointsMargin.RowHeight*29;
         }
 
         /// <summary>
@@ -87,19 +74,17 @@ namespace Yodii_script.IDE
         {
             if (!String.IsNullOrEmpty(ScriptEditor.Text) )
             {
-                List<int> newBreakPoints = new List<int>();
+                List<bool> newBreakPoints = new List<bool>();
                 Expr exp = ExprAnalyser.AnalyseString( ScriptEditor.Text );
                 BreakableVisitor bkv = new BreakableVisitor();
                 bkv.VisitExpr( exp );
                 foreach( var item in bkv.BreakableExprs )
                 {
-                    newBreakPoints.Add( 0 );
+                    newBreakPoints.Add( false );
                 }
                _breakpoints = newBreakPoints;
                 BreakPointsMargin.ItemsSource = _breakpoints;
-                BreakPointsMargin.ScrollIntoView( _breakpoints[_breakpoints.Count - 1] );
-            }
-            
+            }            
         }
 
         private void Debug_Click( object sender, RoutedEventArgs e )
