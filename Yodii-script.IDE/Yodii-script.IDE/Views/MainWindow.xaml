@@ -28,15 +28,15 @@
               HorizontalScrollBarVisibility="Hidden"
               VerticalScrollBarVisibility="Hidden"
               ScrollChanged="ScrollChanged"
-              Background="Aqua" Margin="183,177,953,0"
-              Width="18">
-            <xctk:CheckListBox x:Name="BreakPointsMargin"  Width="18" FontSize="14"/>
+              Background="Aqua" Margin="178,177,0,30" HorizontalAlignment="Left" Width="24">
+            <xctk:CheckListBox x:Name="BreakPointsMargin"  Width="19" FontSize="14" ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+            ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
         </ScrollViewer>
         <ScrollViewer Name="sv2"  
             HorizontalScrollBarVisibility="Hidden"
             VerticalScrollBarVisibility="Visible"
             ScrollChanged="ScrollChanged"
-            Background="Pink" Margin="227,177,504,0">
+            Background="Pink" Margin="207,177,507,30">
             <avalonEdit:TextEditor xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
 			x:Name="ScriptEditor"
 			Document="{Binding Document}"
@@ -44,7 +44,7 @@
 			SyntaxHighlighting="C#"
             HorizontalScrollBarVisibility="Hidden"
             VerticalScrollBarVisibility="Hidden"
-			FontSize="11pt" TextChanged="SyncMarginWithLines" Height="502" Width="465"/>
+			FontSize="11pt" TextChanged="SyncMarginWithLines" Height="502" Width="Auto"/>
         </ScrollViewer>
         <StackPanel HorizontalAlignment="Right" Height="309" Margin="722,177,50,0" VerticalAlignment="Top" Width="384" x:Name="StackTest"/>
     </Grid>
