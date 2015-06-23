@@ -4,7 +4,7 @@
         xmlns:Collections="clr-namespace:System.Collections;assembly=mscorlib"
         xmlns:local="clr-namespace:Yodii_script.IDE.View_Models"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" mc:Ignorable="d" x:Class="Yodii_script.IDE.MainWindow"
-        Title="MainWindow" Height="720" Width="1205.074" MinWidth="1166.268" MinHeight="720" >
+        Title="MainWindow" Height="720" Width="1205.074" MinWidth="1166.268" MinHeight="720" Top="0" Left="0" >
 
     <Window.DataContext>
         <local:MainWindowVM/>
@@ -24,23 +24,28 @@
         <TextBox x:Name="entry_ScriptName" Text="{Binding NameSource, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="278,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="415"/>
         <TextBox x:Name="entry_ScriptDescription" Text="{Binding DescriptionSource, Mode=TwoWay}" HorizontalAlignment="Left" Height="38" Margin="278,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="415"/>
         <Button x:Name="entry_Debug" Content="Debug" Command="{Binding DebugScriptCommand}" Margin="748,14,10,0" VerticalAlignment="Top" Width="88" Height="29" Click="Debug_Click" Padding="1" HorizontalAlignment="Right" HorizontalContentAlignment="Center"/>
-        <ScrollViewer x:Name="ScriptScroller" HorizontalAlignment="Left" Width="510" Margin="200,177,0,44" CanContentScroll="True" >
-            <Grid ScrollViewer.CanContentScroll="True">
-                <avalonEdit:TextEditor xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
-            		x:Name="ScriptEditor"
-            		Document="{Binding Document}"
-            		FontFamily="Consolas"
-            		SyntaxHighlighting="C#"
-                    ScrollViewer.VerticalScrollBarVisibility="Auto"
-            		FontSize="11pt" TextChanged="SyncMarginWithLines" Margin="34,10,-16,0" ScrollViewer.CanContentScroll="True"  />
-                <xctk:CheckListBox x:Name="BreakPointsMargin" Margin="10,10,464,-23" RenderTransformOrigin="-1.5,0.424" ScrollViewer.VerticalScrollBarVisibility="Disabled" Width="19" FontSize="14" ScrollViewer.CanContentScroll="True"/>
-            </Grid>
+        <ScrollViewer Name="sv1"  
+              HorizontalScrollBarVisibility="Hidden"
+              VerticalScrollBarVisibility="Hidden"
+              ScrollChanged="ScrollChanged"
+              Background="Aqua" Margin="183,177,953,0"
+              Width="18">
+            <xctk:CheckListBox x:Name="BreakPointsMargin"  Width="18" FontSize="14"/>
         </ScrollViewer>
-
-
+        <ScrollViewer Name="sv2"  
+            HorizontalScrollBarVisibility="Hidden"
+            VerticalScrollBarVisibility="Visible"
+            ScrollChanged="ScrollChanged"
+            Background="Pink" Margin="227,177,504,0">
+            <avalonEdit:TextEditor xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+			x:Name="ScriptEditor"
+			Document="{Binding Document}"
+			FontFamily="Consolas"
+			SyntaxHighlighting="C#"
+            HorizontalScrollBarVisibility="Hidden"
+            VerticalScrollBarVisibility="Hidden"
+			FontSize="11pt" TextChanged="SyncMarginWithLines" Height="502" Width="465"/>
+        </ScrollViewer>
         <StackPanel HorizontalAlignment="Right" Height="309" Margin="722,177,50,0" VerticalAlignment="Top" Width="384" x:Name="StackTest"/>
-
-
     </Grid>
-
 </Window>
