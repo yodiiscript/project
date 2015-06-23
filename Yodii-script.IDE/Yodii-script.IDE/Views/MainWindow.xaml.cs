@@ -40,7 +40,9 @@ namespace Yodii_script.IDE
             InitializeComponent();
             LoadYodiiSyntax();
             LoadEditorConfig();
-            
+            Uri iconUri = new Uri( "../../../yodii_2.ico", UriKind.RelativeOrAbsolute );
+
+            this.Icon = BitmapFrame.Create( iconUri );
             BreakPointsMargin.ItemsSource = _breakpoints;
             
         }
