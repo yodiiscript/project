@@ -84,7 +84,7 @@ namespace Yodii_script.IDE
                 }
                _breakpoints = newBreakPoints;
                 BreakPointsMargin.ItemsSource = _breakpoints;
-            }            
+            }
         }
 
         private void Debug_Click( object sender, RoutedEventArgs e )
@@ -100,5 +100,6 @@ namespace Yodii_script.IDE
             }
         }
 
+        
     }
 }
