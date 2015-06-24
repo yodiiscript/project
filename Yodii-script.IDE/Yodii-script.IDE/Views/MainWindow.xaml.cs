@@ -31,7 +31,7 @@ namespace Yodii_script.IDE
     public partial class MainWindow : Window
     {
         ScriptContext _scriptCon = new ScriptContext();
-        List<bool> _breakpoints = new List<bool>();
+        List<bool?> _breakpoints = new List<bool?>();
         Watch _watches;
 
 
@@ -40,9 +40,7 @@ namespace Yodii_script.IDE
             InitializeComponent();
             LoadYodiiSyntax();
             LoadEditorConfig();
-            
-            BreakPointsMargin.ItemsSource = _breakpoints;
-            
+                        
         }
         private void LoadYodiiSyntax()
         {
@@ -62,7 +60,8 @@ namespace Yodii_script.IDE
             this.ScriptEditor.WordWrap = true;
             this.ScriptEditor.Background = new SolidColorBrush( Colors.Black );
             this.ScriptEditor.Foreground = new SolidColorBrush( Colors.White );
-            BreakPointsMargin.Background = new SolidColorBrush( Colors.Black );
+            BreakPointsMargin.Background = new SolidColorBrush( Colors.White );
+            BreakPointsMargin.Height = ScriptEditor.Height;
         }
 
         /// <summary>
@@ -72,23 +71,39 @@ namespace Yodii_script.IDE
         /// <param name="e"></param>
         private void SyncMarginWithLines( object sender, EventArgs e )
         {
+            BreakPointsMargin.Items.Clear();
             if (!String.IsNullOrEmpty(ScriptEditor.Text) )
             {
-                List<bool> newBreakPoints = new List<bool>();
                 Expr exp = ExprAnalyser.AnalyseString( ScriptEditor.Text );
                 BreakableVisitor bkv = new BreakableVisitor();
                 bkv.VisitExpr( exp );
                 foreach( var item in bkv.BreakableExprs )
                 {
-                    newBreakPoints.Add( false );
+                    CheckBox cb = new CheckBox();
+                    cb.IsChecked = false;
+
+                    cb.Margin = new Thickness( 1 );
+                    
+                    if( item == null )
+                    {
+                        _breakpoints.Add( null );
+                        cb.IsEnabled = false;
+
+                    }
+                    else
+                    {
+                        _breakpoints.Add( false );
+                        cb.IsEnabled = true;
+                    }
+                    BreakPointsMargin.Items.Add( cb );
                 }
-               _breakpoints = newBreakPoints;
-                BreakPointsMargin.ItemsSource = _breakpoints;
             }
         }
 
         private void Debug_Click( object sender, RoutedEventArgs e )
         {
+            var a = sv1.ScrollableHeight;
+            var b = sv2.ScrollableHeight;
             if( StackTest.Children.Count == 0 )
             {
                 _watches = new Watch( this );
@@ -104,12 +119,10 @@ namespace Yodii_script.IDE
             if( sender == sv1 )
             {
                 sv2.ScrollToVerticalOffset( e.VerticalOffset );
-                sv2.ScrollToHorizontalOffset( e.HorizontalOffset );
             }
             else
             {
                 sv1.ScrollToVerticalOffset( e.VerticalOffset );
-                sv1.ScrollToHorizontalOffset( e.HorizontalOffset );
             }
         }
     }
