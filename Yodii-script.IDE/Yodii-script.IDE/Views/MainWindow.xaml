@@ -27,31 +27,27 @@
         <ScrollViewer Name="sv1"  
               HorizontalScrollBarVisibility="Hidden"
               VerticalScrollBarVisibility="Hidden"
-              ScrollChanged="ScrollChanged"
-              Background="Aqua" Margin="178,177,0,30" HorizontalAlignment="Left" Width="18" >
-            <ItemsControl Name="BreakPointsMargin" Width="18" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+              CanContentScroll="True"              
+              Background="Aqua" Margin="178,193,0,46" HorizontalAlignment="Left" Width="18" >
+            <ItemsControl Name="BreakPointsMargin" Width="18" MaxHeight="Infinity" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <CheckBox Width="18" Height="18" Margin="0"/>
                     </DataTemplate>
-                 </ItemsControl.ItemTemplate>
-                
+                </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-        <ScrollViewer Name="sv2"  
+        <avalonEdit:TextEditor xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+		    x:Name="ScriptEditor"
+		    Document="{Binding Document}"
+            Panel.ZIndex="1000"
+		    FontFamily="Consolas"
+		    SyntaxHighlighting="C#"
+            Margin="214,193,488,46"
             HorizontalScrollBarVisibility="Hidden"
             VerticalScrollBarVisibility="Visible"
-            ScrollChanged="ScrollChanged"
-            Background="Pink" Margin="195,177,507,30">
-            <avalonEdit:TextEditor xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
-			x:Name="ScriptEditor"
-			Document="{Binding Document}"
-			FontFamily="Consolas"
-			SyntaxHighlighting="C#"
-            HorizontalScrollBarVisibility="Hidden"
-            VerticalScrollBarVisibility="Hidden"
-			FontSize="11pt" TextChanged="SyncMarginWithLines" Height="502" Width="Auto"/>
-        </ScrollViewer>
+            ScrollViewer.CanContentScroll="False"           
+		    FontSize="11pt" TextChanged="SyncMarginWithLines" Width="Auto"/>
         <StackPanel HorizontalAlignment="Right" Height="309" Margin="722,177,50,0" VerticalAlignment="Top" Width="384" x:Name="StackTest"/>
     </Grid>
 </Window>

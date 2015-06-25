@@ -62,6 +62,12 @@ namespace Yodii_script.IDE
             this.ScriptEditor.Foreground = new SolidColorBrush( Colors.White );
             BreakPointsMargin.Background = new SolidColorBrush( Colors.White );
             BreakPointsMargin.Height = ScriptEditor.Height;
+            ScriptEditor.TextArea.TextView.ScrollOffsetChanged +=TextView_ScrollOffsetChanged;
+        }
+
+        private void TextView_ScrollOffsetChanged( object sender, EventArgs e )
+        {
+            sv1.ScrollToVerticalOffset(ScriptEditor.TextArea.TextView.ScrollOffset.LengthSquared);
         }
 
         /// <summary>
@@ -102,8 +108,7 @@ namespace Yodii_script.IDE
 
         private void Debug_Click( object sender, RoutedEventArgs e )
         {
-            var a = sv1.ScrollableHeight;
-            var b = sv2.ScrollableHeight;
+            
             if( StackTest.Children.Count == 0 )
             {
                 _watches = new Watch( this );
@@ -116,14 +121,8 @@ namespace Yodii_script.IDE
         }
         private void ScrollChanged( object sender, ScrollChangedEventArgs e )
         {
-            if( sender == sv1 )
-            {
-                sv2.ScrollToVerticalOffset( e.VerticalOffset );
-            }
-            else
-            {
-                sv1.ScrollToVerticalOffset( e.VerticalOffset );
-            }
+            //TextView_ScrollOffsetChanged( sender, e );
+        
         }
     }
 }
