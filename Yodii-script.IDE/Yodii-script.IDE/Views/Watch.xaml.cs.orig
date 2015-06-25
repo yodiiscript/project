@@ -20,7 +20,7 @@ namespace GUI
         ScriptEngineDebugger _engine = new ScriptEngineDebugger( new GlobalContext() );
         ScriptEngine.Result _res;
         MainWindow _root;
-    public Watch( MainWindow root)
+        public Watch( MainWindow root)
         {
             _root = root;
             string script = root.ScriptEditor.Text;
@@ -112,8 +112,7 @@ namespace GUI
         
         if( !_res.CanContinue )
         {
-            _res.Dispose();
-            _root.Debug_Click( sender, e ); 
+            _root.Debug_Click( this, new RoutedEventArgs() );
         }
         else
         {
@@ -121,13 +120,19 @@ namespace GUI
             foreach (VarData v in _varsCollection)
             {
                 v.Refresh(_engine);
+<<<<<<< HEAD
             }  
         }              
+=======
+            }
+        }
+              
+>>>>>>> origin/REPL_ys
     }
+
     private void StopDebbuging_Click(object sender, RoutedEventArgs e)
     {
-        _res.Dispose();
-        ((Panel)this.Parent).Children.Remove(this); 
+        _root.Debug_Click( this, new RoutedEventArgs() );
     }
 
     private void BreakAlways_Click( object sender, RoutedEventArgs e )

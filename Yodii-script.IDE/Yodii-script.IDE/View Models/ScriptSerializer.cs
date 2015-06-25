@@ -27,7 +27,7 @@ namespace Yodii_script.IDE.View_Models
             s.Add( new XElement( "description", script.Description ) );
             s.Add( new XElement( "sourceCode", script.SourceCode ) );
             doc.Element( "Scripts" ).Add( s );
-            doc.Save( _path );     
+            doc.Save( _path );
         }
         /// <summary>
         /// Removes the specified <see cref="Script"/> from the document
