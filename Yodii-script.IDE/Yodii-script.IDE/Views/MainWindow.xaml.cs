@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Xml;
+using Yodii_script.IDE.Views;
 using GUI;
 using ICSharpCode.AvalonEdit.Highlighting;
 using ICSharpCode.AvalonEdit.Highlighting.Xshd;
@@ -21,6 +22,7 @@ namespace Yodii_script.IDE
         ScriptContext _scriptCon = new ScriptContext();
         List<bool?> _breakpoints = new List<bool?>();
         Watch _watches;
+        Repl _console;
 
 
         public MainWindow()
@@ -28,7 +30,9 @@ namespace Yodii_script.IDE
             InitializeComponent();
             LoadYodiiSyntax();
             LoadEditorConfig();
-                        
+            Uri iconUri = new Uri( "../../../yodii_2.ico", UriKind.RelativeOrAbsolute );
+
+            this.Icon = BitmapFrame.Create( iconUri );
         }
         private void LoadYodiiSyntax()
         {
@@ -91,16 +95,31 @@ namespace Yodii_script.IDE
             }
         }
 
-        private void Debug_Click( object sender, RoutedEventArgs e )
+        internal void Debug_Click( object sender, RoutedEventArgs e )
         {
-            if( DebugPanel.Children.Count == 0 )
+            if( _watches == null )
             {
                 _watches = new Watch( this );
                 DebugPanel.Children.Add( _watches );
             }
-            else
+            else if( _watches != null)
             {
-                MessageBoxResult popup = MessageBox.Show("Debug already running");
+                ((Panel)_watches.Parent).Children.Remove( _watches );
+                _watches = null;
+            }
+        }
+
+        internal void StartConsole_Click( object sender, RoutedEventArgs e )
+        {
+            if( _console == null )
+            {
+                _console = new Repl( this );
+                StackTest.Children.Add( _console );
+            }
+            else if( _console != null )
+            {
+                ((Panel)_console.Parent).Children.Remove( _console );
+                _console = null;
             }
         }
 

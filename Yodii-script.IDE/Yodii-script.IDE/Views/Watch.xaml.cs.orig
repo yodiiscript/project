@@ -120,8 +120,14 @@ namespace GUI
             foreach (VarData v in _varsCollection)
             {
                 v.Refresh(_engine);
-            }
+<<<<<<< HEAD
+            }  
         }              
+=======
+            }
+        }
+              
+>>>>>>> origin/REPL_ys
     }
 
     private void StopDebbuging_Click(object sender, RoutedEventArgs e)
