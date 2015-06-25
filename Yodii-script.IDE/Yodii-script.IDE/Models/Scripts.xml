@@ -15,7 +15,13 @@ z = b+d;
   </Script>
   <Script name="conditions">
     <language>ys</language>
-    <description>testing conditions</description>
+    <description>testing conditions
+op shit
+a
+a
+a
+a
+a</description>
     <sourceCode>let a = 5;
 let b = 2;
 let c;

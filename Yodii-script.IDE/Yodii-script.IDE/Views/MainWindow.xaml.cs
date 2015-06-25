@@ -11,6 +11,7 @@ using ICSharpCode.AvalonEdit.Highlighting.Xshd;
 using Yodii.Script;
 using Yodii.Script.Debugger;
 using Yodii_script.IDE.View_Models;
+using System.Windows.Media.Imaging;
 
 namespace Yodii_script.IDE
 {
@@ -52,7 +53,6 @@ namespace Yodii_script.IDE
             this.ScriptEditor.WordWrap = true;
             this.ScriptEditor.Background = new SolidColorBrush( Colors.Black );
             this.ScriptEditor.Foreground = new SolidColorBrush( Colors.White );
-            BreakPointsMargin.Background = new SolidColorBrush( Colors.White );
             BreakPointsMargin.Height = ScriptEditor.Height;
             ScriptEditor.TextArea.TextView.ScrollOffsetChanged +=TextView_ScrollOffsetChanged;
         }
@@ -104,7 +104,7 @@ namespace Yodii_script.IDE
             }
             else if( _watches != null)
             {
-                ((Panel)_watches.Parent).Children.Remove( _watches );
+                DebugPanel.Children.Remove( _watches );
                 _watches = null;
             }
         }
@@ -114,7 +114,7 @@ namespace Yodii_script.IDE
             if( _console == null )
             {
                 _console = new Repl( this );
-                StackTest.Children.Add( _console );
+                DebugPanel.Children.Add( _console );
             }
             else if( _console != null )
             {
