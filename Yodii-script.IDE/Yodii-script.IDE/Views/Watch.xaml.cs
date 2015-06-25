@@ -28,33 +28,31 @@ namespace GUI
 
             BreakableVisitor bkv = new BreakableVisitor();
             bkv.VisitExpr( exp );
+            for( int i = 0; i < root.BreakPointsMargin.Items.Count; i++ )
+            {
+                if( (bool)((CheckBox)root.BreakPointsMargin.Items[i]).IsChecked )
+                {
+                    _engine.Breakpoints.AddBreakpoint( bkv.BreakableExprs[i][0] );
+                }
+            }
 
-            _engine.Breakpoints.BreakAlways = true;
-            _res = _engine.Execute(exp);
+            _res = _engine.Execute( exp );
 
              if( !_res.CanContinue )
              {
                  _res.Dispose();
-                 ((Panel)this.Parent).Children.Remove(this); 
+                 
+                 root.DebugPanel.Children.Remove(this); 
                 
-             }
-
-        
-      InitializeComponent();
-            
-            
-            
-      
+             }       
+      InitializeComponent();    
     }
 
     public ObservableCollection<VarData> VarsCollection
     { get { return _varsCollection; } }
 
-   
-
     private void add_Click( object sender, RoutedEventArgs e )
-    {
-        
+    {        
         var Test = _engine.ScopeManager.FindByName( addVars.Text );
         if( Test == null )
         {
@@ -73,23 +71,17 @@ namespace GUI
                 VarValue = EvalTokenizerDebugger.Escape(Test.Object.ToString()),
                 VarType = Test.Object.Type.ToString(),
             } );
-            
         }
     }
-
     private void clearButton_Click( object sender, RoutedEventArgs e )
     {
-        _varsCollection.Clear();
-        
-        
+        _varsCollection.Clear();                
     }
-
-   
+  
     private void TextBox_KeyDown( object sender, System.Windows.Input.KeyEventArgs e )
     {
         if( e.Key == System.Windows.Input.Key.Enter )
-        {
-            
+        {            
             TextBox tb = (TextBox)sender;
             var a = tb.Text;
 
@@ -103,12 +95,10 @@ namespace GUI
             if( result == null && error == true )
             {
                 MessageBoxResult popUp = MessageBox.Show( "Invalid Input" );
-                tb.Text = obj2.VarValue;
-               
-                 
-            } else if (result != null)
-            {
-               
+                tb.Text = obj2.VarValue;                               
+            } 
+            else if (result != null)
+            {              
                 O.Value = result;
                 obj2.Refresh(_engine);
 
@@ -127,13 +117,11 @@ namespace GUI
         else
         {
             _res.Continue();
-
             foreach (VarData v in _varsCollection)
             {
                 v.Refresh(_engine);
             }  
-        }
-              
+        }              
     }
 
     private void StopDebbuging_Click(object sender, RoutedEventArgs e)
@@ -142,17 +130,21 @@ namespace GUI
         ((Panel)this.Parent).Children.Remove(this); 
     }
 
+    private void BreakAlways_Click( object sender, RoutedEventArgs e )
+    {
+        _engine.Breakpoints.BreakAlways = !_engine.Breakpoints.BreakAlways;
+    }
+
+    private void addVars_MouseDoubleClick( object sender, System.Windows.Input.MouseButtonEventArgs e )
+    {
+        this.addVars.Text = "";
+    }
 }  
-
- 
-
   public class VarData : INotifyPropertyChanged
   {
       string _name;
       string _type;
       string _value;
-
-
       public string VarName
       {
           get { return _name; }
@@ -192,6 +184,5 @@ namespace GUI
     public event PropertyChangedEventHandler PropertyChanged;
 
     #endregion
-  }
-       
+  }      
 }

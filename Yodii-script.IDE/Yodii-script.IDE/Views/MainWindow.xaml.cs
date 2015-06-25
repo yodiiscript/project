@@ -1,27 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Threading;
-using ICSharpCode.AvalonEdit;
-using ICSharpCode.AvalonEdit.Highlighting.Xshd;
-using ICSharpCode.AvalonEdit.Highlighting;
-using ICSharpCode.AvalonEdit.Editing;
-using Yodii_script.IDE.View_Models;
 using System.Xml;
 using GUI;
+using ICSharpCode.AvalonEdit.Highlighting;
+using ICSharpCode.AvalonEdit.Highlighting.Xshd;
 using Yodii.Script;
 using Yodii.Script.Debugger;
+using Yodii_script.IDE.View_Models;
 
 namespace Yodii_script.IDE
 {
@@ -66,8 +54,8 @@ namespace Yodii_script.IDE
         }
 
         private void TextView_ScrollOffsetChanged( object sender, EventArgs e )
-        {
-            sv1.ScrollToVerticalOffset(ScriptEditor.TextArea.TextView.ScrollOffset.LengthSquared);
+        {           
+            sv1.ScrollToVerticalOffset(ScriptEditor.TextArea.TextView.ScrollOffset.Length);
         }
 
         /// <summary>
@@ -82,19 +70,16 @@ namespace Yodii_script.IDE
             {
                 Expr exp = ExprAnalyser.AnalyseString( ScriptEditor.Text );
                 BreakableVisitor bkv = new BreakableVisitor();
-                bkv.VisitExpr( exp );
+                bkv.VisitExpr( exp );               
                 foreach( var item in bkv.BreakableExprs )
                 {
                     CheckBox cb = new CheckBox();
-                    cb.IsChecked = false;
-
                     cb.Margin = new Thickness( 1 );
-                    
+                    cb.IsChecked = false;
                     if( item == null )
                     {
                         _breakpoints.Add( null );
                         cb.IsEnabled = false;
-
                     }
                     else
                     {
@@ -108,21 +93,20 @@ namespace Yodii_script.IDE
 
         private void Debug_Click( object sender, RoutedEventArgs e )
         {
-            
-            if( StackTest.Children.Count == 0 )
+            if( DebugPanel.Children.Count == 0 )
             {
                 _watches = new Watch( this );
-                StackTest.Children.Add( _watches );
+                DebugPanel.Children.Add( _watches );
             }
             else
             {
                 MessageBoxResult popup = MessageBox.Show("Debug already running");
             }
         }
-        private void ScrollChanged( object sender, ScrollChangedEventArgs e )
+
+        private void CheckBox_Checked( object sender, RoutedEventArgs e )
         {
-            //TextView_ScrollOffsetChanged( sender, e );
-        
+            
         }
     }
 }

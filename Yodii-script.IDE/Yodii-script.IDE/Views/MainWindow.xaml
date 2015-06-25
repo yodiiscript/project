@@ -32,7 +32,7 @@
             <ItemsControl Name="BreakPointsMargin" Width="18" MaxHeight="Infinity" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <CheckBox Width="18" Height="18" Margin="0"/>
+                        <CheckBox Width="18" Height="18" Margin="0" Checked="CheckBox_Checked"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
@@ -43,11 +43,11 @@
             Panel.ZIndex="1000"
 		    FontFamily="Consolas"
 		    SyntaxHighlighting="C#"
-            Margin="214,193,488,46"
+            Margin="196,193,506,46"
             HorizontalScrollBarVisibility="Hidden"
             VerticalScrollBarVisibility="Visible"
             ScrollViewer.CanContentScroll="False"           
 		    FontSize="11pt" TextChanged="SyncMarginWithLines" Width="Auto"/>
-        <StackPanel HorizontalAlignment="Right" Height="309" Margin="722,177,50,0" VerticalAlignment="Top" Width="384" x:Name="StackTest"/>
+        <StackPanel x:Name="DebugPanel" Background="Chartreuse"  HorizontalAlignment="Right" Height="450" Margin="0,193,0,0" VerticalAlignment="Top" Width="506" />
     </Grid>
 </Window>
