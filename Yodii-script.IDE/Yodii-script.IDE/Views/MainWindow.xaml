@@ -12,7 +12,7 @@
 
     <Grid Background="LightGray">
         <ListBox x:Name="ScriptCol" HorizontalAlignment="Left" Margin="3,50,3,15" Width="175" 
-			ItemsSource="{Binding Source}" DisplayMemberPath="FullName" Background="Black" Foreground="White"/>
+			ItemsSource="{Binding Source}" DisplayMemberPath="FullName" Background="Black" Foreground="White" MouseDoubleClick="ScriptCol_MouseDoubleClick"/>
 
         <Label Content="Name:" HorizontalAlignment="Left" Margin="183,53,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.227,0.482"/>
         <Label Content="Description:" HorizontalAlignment="Left" Margin="178,85,0,0" VerticalAlignment="Top"/>

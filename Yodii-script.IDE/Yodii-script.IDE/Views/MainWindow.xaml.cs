@@ -129,5 +129,12 @@ namespace Yodii_script.IDE
         {
             
         }
+
+        private void ScriptCol_MouseDoubleClick( object sender, System.Windows.Input.MouseButtonEventArgs e )
+        {
+            MainWindowVM DataCont = (MainWindowVM)base.DataContext;
+            var CommandToExec = DataCont.EditScriptCommand;
+            CommandToExec.Execute( ScriptCol.SelectedItem );
+        }
     }
 }
