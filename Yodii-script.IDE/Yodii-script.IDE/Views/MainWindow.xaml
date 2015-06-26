@@ -23,7 +23,7 @@
         <Button x:Name="button_deleteScript" Content="Delete" Command="{Binding DeleteScriptCommand}" CommandParameter="{Binding SelectedIndex, ElementName=ScriptCol}" HorizontalAlignment="Left" Margin="99,14,0,0" VerticalAlignment="Top" Width="79"/>
         <TextBox x:Name="entry_ScriptName" Text="{Binding NameSource, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="259,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="415"/>
         <TextBox x:Name="entry_ScriptDescription" Text="{Binding DescriptionSource, Mode=TwoWay}" HorizontalAlignment="Left" Height="64" Margin="259,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
-        <Button x:Name="entry_Debug" Content="Debug" Command="{Binding DebugScriptCommand}" Margin="748,14,10,0" VerticalAlignment="Top" Width="88" Height="29" Click="Debug_Click" Padding="1" HorizontalAlignment="Right" HorizontalContentAlignment="Center"/>
+        <Button x:Name="entry_Debug" Content="Run" Command="{Binding DebugScriptCommand}" Margin="748,14,10,0" VerticalAlignment="Top" Width="88" Height="29" Click="Debug_Click" Padding="1" HorizontalAlignment="Right" HorizontalContentAlignment="Center"/>
         <ScrollViewer Name="sv1"  
               HorizontalScrollBarVisibility="Hidden"
               VerticalScrollBarVisibility="Hidden"

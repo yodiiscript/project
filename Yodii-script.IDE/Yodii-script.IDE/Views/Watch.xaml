@@ -7,7 +7,7 @@
              mc:Ignorable="d" d:DesignWidth="500" Height="262">
     <Grid x:Name="board" MaxHeight="280" Margin="0,10,0,0">
 
-        <TextBox x:Name="addVars" HorizontalAlignment="Left" Height="23" Margin="0,54,0,0" TextWrapping="Wrap" Text="Type var name here" VerticalAlignment="Top" Width="120" TextAlignment="Center" MouseDoubleClick="addVars_MouseDoubleClick"/>
+        <TextBox x:Name="addVars" HorizontalAlignment="Left" Height="23" Margin="0,54,0,0" TextWrapping="Wrap" Text="Type var name here" VerticalAlignment="Top" Width="120" TextAlignment="Center" MouseDoubleClick="addVars_MouseDoubleClick" KeyDown="addVars_KeyDown"/>
         <Button x:Name="add" Content="add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="168,54,0,0" Click="add_Click"/>
         <ListView Name="Watche" Margin="0,82,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto" ItemsSource="{Binding VarsCollection}" AlternationCount="-1" IsSynchronizedWithCurrentItem="True" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionMode="Single">
             <ListView.View>

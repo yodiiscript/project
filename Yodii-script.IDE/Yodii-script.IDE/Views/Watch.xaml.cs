@@ -22,6 +22,7 @@ namespace GUI
         MainWindow _root;
     public Watch( MainWindow root)
         {
+            InitializeComponent(); 
             _root = root;
             string script = root.ScriptEditor.Text;
 
@@ -42,11 +43,11 @@ namespace GUI
              if( !_res.CanContinue )
              {
                  _res.Dispose();
-                 
+                 _continue.IsEnabled = false;
                  root.DebugPanel.Children.Remove(this); 
                 
              }       
-      InitializeComponent();    
+         
     }
 
     public ObservableCollection<VarData> VarsCollection
@@ -113,7 +114,8 @@ namespace GUI
         if( !_res.CanContinue )
         {
             _res.Dispose();
-            _root.Debug_Click( sender, e ); 
+            _root.Debug_Click( sender, e );
+ 
         }
         else
         {
@@ -121,13 +123,14 @@ namespace GUI
             foreach (VarData v in _varsCollection)
             {
                 v.Refresh(_engine);
-            }  
+            }
+            _continue.IsEnabled = _res.CanContinue;
         }              
     }
     private void StopDebbuging_Click(object sender, RoutedEventArgs e)
     {
         _res.Dispose();
-        ((Panel)this.Parent).Children.Remove(this); 
+        _root.Debug_Click( sender, e );
     }
 
     private void BreakAlways_Click( object sender, RoutedEventArgs e )
@@ -138,6 +141,11 @@ namespace GUI
     private void addVars_MouseDoubleClick( object sender, System.Windows.Input.MouseButtonEventArgs e )
     {
         this.addVars.Text = "";
+    }
+
+    private void addVars_KeyDown( object sender, System.Windows.Input.KeyEventArgs e )
+    {
+        if( e.Key == System.Windows.Input.Key.Enter ) add_Click( sender, e );
     }
 }  
   public class VarData : INotifyPropertyChanged

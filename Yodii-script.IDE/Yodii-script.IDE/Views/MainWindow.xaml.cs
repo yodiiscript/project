@@ -101,11 +101,13 @@ namespace Yodii_script.IDE
             {
                 _watches = new Watch( this );
                 DebugPanel.Children.Add( _watches );
+                entry_Debug.Content = "Stop";
             }
             else if( _watches != null)
             {
                 DebugPanel.Children.Remove( _watches );
                 _watches = null;
+                entry_Debug.Content = "Run";
             }
         }
 
