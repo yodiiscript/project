@@ -1,0 +1,76 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Collections="clr-namespace:System.Collections;assembly=mscorlib"
+        xmlns:local="clr-namespace:Yodii_script.IDE.View_Models"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" mc:Ignorable="d" x:Class="Yodii_script.IDE.MainWindow"
+        Title="MainWindow" Height="720" Width="1205.074" MinWidth="1166.268" MinHeight="720" Top="0" Left="0" >
+
+    <Window.DataContext>
+        <local:MainWindowVM/>
+    </Window.DataContext>
+
+    <Grid Background="LightGray">
+        <ListBox x:Name="ScriptCol" HorizontalAlignment="Left" Margin="3,50,3,15" Width="175" 
+			ItemsSource="{Binding Source}" DisplayMemberPath="FullName" Background="Black" Foreground="White"/>
+
+        <Label Content="Name:" HorizontalAlignment="Left" Margin="200,53,0,0" VerticalAlignment="Top"/>
+        <Label Content="Description:" HorizontalAlignment="Left" Margin="200,100,0,0" VerticalAlignment="Top"/>
+        <Label Content="Source Code:" HorizontalAlignment="Left" Margin="200,146,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="button_addScript" Content="Save" Command="{Binding AddScriptCommand}"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="75" Margin="355,0,0,10" />
+        <Button x:Name="button_editScript" Content="Edit" Command="{Binding EditScriptCommand}" CommandParameter="{Binding SelectedItem, ElementName=ScriptCol}" HorizontalAlignment="Left" Margin="5,14,0,0" VerticalAlignment="Top" Width="79"/>
+        <Button x:Name="button_clearScript" Content="Clear" Command="{Binding ClearScriptCommand}" HorizontalAlignment="Left" Margin="462,0,0,10" VerticalAlignment="Bottom" Width="70" RenderTransformOrigin="0.485,-0.347" VerticalContentAlignment="Bottom"/>
+        <Button x:Name="button_deleteScript" Content="Delete" Command="{Binding DeleteScriptCommand}" CommandParameter="{Binding SelectedIndex, ElementName=ScriptCol}" HorizontalAlignment="Left" Margin="99,14,0,0" VerticalAlignment="Top" Width="79"/>
+        <TextBox x:Name="entry_ScriptName" Text="{Binding NameSource, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="278,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="415"/>
+        <TextBox x:Name="entry_ScriptDescription" Text="{Binding DescriptionSource, Mode=TwoWay}" HorizontalAlignment="Left" Height="38" Margin="278,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="415"/>
+        <Button x:Name="entry_Debug" Content="Debug" Command="{Binding DebugScriptCommand}" Margin="748,14,10,0" VerticalAlignment="Top" Width="88" Height="29" Click="Debug_Click" Padding="1" HorizontalAlignment="Right" HorizontalContentAlignment="Center"/>
+<<<<<<< HEAD
+        <ScrollViewer Name="sv1"  
+              HorizontalScrollBarVisibility="Hidden"
+              VerticalScrollBarVisibility="Hidden"
+              CanContentScroll="True"              
+              Background="Aqua" Margin="178,193,0,46" HorizontalAlignment="Left" Width="18" >
+            <ItemsControl Name="BreakPointsMargin" Width="18" MaxHeight="Infinity" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox Width="18" Height="18" Margin="0" Checked="CheckBox_Checked"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        <avalonEdit:TextEditor xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+		    x:Name="ScriptEditor"
+		    Document="{Binding Document}"
+            Panel.ZIndex="1000"
+		    FontFamily="Consolas"
+		    SyntaxHighlighting="C#"
+            Margin="196,193,506,46"
+            HorizontalScrollBarVisibility="Hidden"
+            VerticalScrollBarVisibility="Visible"
+            ScrollViewer.CanContentScroll="False"           
+		    FontSize="11pt" TextChanged="SyncMarginWithLines" Width="Auto"/>
+        <StackPanel x:Name="DebugPanel" Background="Chartreuse"  HorizontalAlignment="Right" Height="450" Margin="0,193,0,0" VerticalAlignment="Top" Width="506" />
+=======
+        <avalonEdit:TextEditor
+			xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+			x:Name="ScriptEditor"
+            Document="{Binding Path=Document}"
+			FontFamily="Consolas"
+			SyntaxHighlighting="C#"
+			FontSize="11pt" Margin="240,177,501,49" MaxHeight="500" TextChanged="SyncMarginWithLines" />
+        <DataGrid x:Name="BreakPointsMargin" AutoGenerateColumns="False" MinWidth="25" MinHeight="20" Margin="197,177,0,0" MaxWidth="65" ScrollViewer.CanContentScroll="False" 
+                   CanUserAddRows="False" UseLayoutRounding="False" HeadersVisibility="None" HorizontalScrollBarVisibility="Disabled" SelectionUnit="Cell"
+                   CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" Width="38" Height="171" VerticalAlignment="Top" VerticalContentAlignment="Stretch" 
+                   VerticalScrollBarVisibility="Visible" SelectionMode="Single" RowHeight="17.1" HorizontalAlignment="Left" MaxColumnWidth="20" RowBackground="#00000000" 
+                   RowDetailsVisibilityMode="Visible" Background="#02000000" HorizontalGridLinesBrush="#FF53B269" VerticalGridLinesBrush="{x:Null}" IsSynchronizedWithCurrentItem="True" 
+                   Foreground="#FFC3C3C3" CellEditEnding="test_datagrid" GridLinesVisibility="Horizontal" CanUserResizeRows="False" FontWeight="Bold" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Foreground="#FF6CEA25"/>
+            </DataGrid.Columns>
+
+        </DataGrid>
+        <StackPanel HorizontalAlignment="Right" Height="626" Margin="0,53,64,0" VerticalAlignment="Top" Width="384" Name="StackTest"/>
+        <Button x:Name="StartConsole" Content="Console" HorizontalAlignment="Left" Margin="993,14,0,0" VerticalAlignment="Top" Width="88" ToolTip="Starts interactive console" Click="StartConsole_Click" Height="29"/>
+>>>>>>> origin/REPL_ys
+    </Grid>
+</Window>

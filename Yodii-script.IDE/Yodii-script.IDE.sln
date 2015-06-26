@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yodii-script.IDE", "Yodii-script.IDE\Yodii-script.IDE.csproj", "{AA28FDBE-C0C2-4207-83A1-4FC98FF34C4E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{4410E6B6-64C6-4142-8826-DF350DF20004}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8560A836-EC96-46D4-9782-C64E7E2B89D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yodii.Script", "Yodii.Script\Yodii.Script.csproj", "{388870E4-CF4E-45B5-BBEC-EC6FAD2E7490}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yodii.Script.Debugger", "Yodii.Script.Debugger\Yodii.Script.Debugger.csproj", "{576274A5-5FBF-4803-91DB-96EFFCF4159A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yodii.Script.Debugger.Tests", "Tests\Yodii.Script.Debugger.Tests\Yodii.Script.Debugger.Tests.csproj", "{04FE4BA4-34A8-4987-A3B5-E14B963F6BE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yodii.Script.Tests", "Tests\Yodii.Script.Tests\Yodii.Script.Tests.csproj", "{270354A6-A0EE-4C0F-BF23-D5CAC4121DEC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yodii-script.IDE.Tests", "Tests\Yodii-script.IDE.Tests\Yodii-script.IDE.Tests.csproj", "{3FBBCDF0-824E-45BD-85B6-930F73C64128}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA28FDBE-C0C2-4207-83A1-4FC98FF34C4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA28FDBE-C0C2-4207-83A1-4FC98FF34C4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA28FDBE-C0C2-4207-83A1-4FC98FF34C4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA28FDBE-C0C2-4207-83A1-4FC98FF34C4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{388870E4-CF4E-45B5-BBEC-EC6FAD2E7490}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{388870E4-CF4E-45B5-BBEC-EC6FAD2E7490}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{388870E4-CF4E-45B5-BBEC-EC6FAD2E7490}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{388870E4-CF4E-45B5-BBEC-EC6FAD2E7490}.Release|Any CPU.Build.0 = Release|Any CPU
+		{576274A5-5FBF-4803-91DB-96EFFCF4159A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{576274A5-5FBF-4803-91DB-96EFFCF4159A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{576274A5-5FBF-4803-91DB-96EFFCF4159A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{576274A5-5FBF-4803-91DB-96EFFCF4159A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04FE4BA4-34A8-4987-A3B5-E14B963F6BE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04FE4BA4-34A8-4987-A3B5-E14B963F6BE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04FE4BA4-34A8-4987-A3B5-E14B963F6BE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04FE4BA4-34A8-4987-A3B5-E14B963F6BE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{270354A6-A0EE-4C0F-BF23-D5CAC4121DEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{270354A6-A0EE-4C0F-BF23-D5CAC4121DEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{270354A6-A0EE-4C0F-BF23-D5CAC4121DEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{270354A6-A0EE-4C0F-BF23-D5CAC4121DEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FBBCDF0-824E-45BD-85B6-930F73C64128}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FBBCDF0-824E-45BD-85B6-930F73C64128}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FBBCDF0-824E-45BD-85B6-930F73C64128}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FBBCDF0-824E-45BD-85B6-930F73C64128}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{04FE4BA4-34A8-4987-A3B5-E14B963F6BE7} = {8560A836-EC96-46D4-9782-C64E7E2B89D8}
+		{270354A6-A0EE-4C0F-BF23-D5CAC4121DEC} = {8560A836-EC96-46D4-9782-C64E7E2B89D8}
+		{3FBBCDF0-824E-45BD-85B6-930F73C64128} = {8560A836-EC96-46D4-9782-C64E7E2B89D8}
+	EndGlobalSection
+EndGlobal

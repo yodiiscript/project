@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Scripts>
+  <Script name="test">
+    <language>ys</language>
+    <description>script that test debbuger</description>
+    <sourceCode>let a, b, c;
+let z;
+a = true;
+a = 2;
+b = "test";
+c = a + b;
+let d = "simple string";
+z = b+d;
+</sourceCode>
+  </Script>
+  <Script name="conditions">
+    <language>ys</language>
+    <description>testing conditions
+op shit
+a
+a
+a
+a
+a</description>
+    <sourceCode>let a = 5;
+let b = 2;
+let c;
+let d = "coucou";
+let e = "zob";
+if (a &gt; b) {
+	c = a+b;
+}
+d = "dfgdgdg";
+d = "dfgdfg2é";
+d = 2; 
+
+
+
+
+
+
+a
+
+aa
+a
+a
+a
+a
+a
+a
+a
+aa
+a
+a
+a
+a
+
+a
+aa</sourceCode>
+  </Script>
+</Scripts>
